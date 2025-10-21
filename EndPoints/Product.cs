@@ -40,6 +40,29 @@ public static class Endpoints
                 ? Results.Ok(product)
                 : Results.NotFound(new { message = $"Product with Id {id} not found." });
         });
+
+        // PUT Product
+        app.MapPut("/products/{id}", (Guid id, ProductRequest req) =>
+        {
+            Product? product = ProductADO.GetById(dbConn, id);
+
+            if (product == null)
+            {
+                return Results.NotFound();
+            }
+
+            Product productUpdt = new Product
+            {
+                Id = id,
+                Code = req.Code,
+                Name = req.Name,
+                Price = req.Price
+            };
+
+            ProductADO.Update(dbConn, productUpdt);
+
+            return Results.Ok(productUpdt);
+        });
     }
 
 
