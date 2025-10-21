@@ -2,7 +2,7 @@ using StoreDB.Repository;
 using StoreDB.Services;
 using StoreDB.Model;
 
-namespace StoreDB.Endpoints;
+namespace StoreDB.EndPoints;
 
 public static class Endpoints
 {
