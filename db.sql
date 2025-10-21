@@ -1,7 +1,6 @@
-Use master;
--- drop database dbdemo;
--- create database dbdemo;
-Use dbdemo;
+DROP DATABASE StoreDB;
+CREATE DATABASE StoreDB;
+USE StoreDB;
 
 CREATE TABLE Products (
     Id UNIQUEIDENTIFIER NOT NULL PRIMARY KEY,
