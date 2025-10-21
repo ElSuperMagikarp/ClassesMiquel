@@ -75,4 +75,27 @@ static class ProductADO
         dbConn.Close();
         return product;
     }
+
+    public static void Update(DatabaseConnection dbConn, Product product)
+    {
+        dbConn.Open();
+
+        string sql = @"UPDATE Products
+                    SET Code = @Code,
+                        Name = @Name,
+                        Price = @Price
+                    WHERE Id = @Id";
+
+        using SqlCommand cmd = new SqlCommand(sql, dbConn.sqlConnection);
+        cmd.Parameters.AddWithValue("@Id", product.Id);
+        cmd.Parameters.AddWithValue("@Code", product.Code);
+        cmd.Parameters.AddWithValue("@Name", product.Name);
+        cmd.Parameters.AddWithValue("@Price", product.Price);
+
+        int rows = cmd.ExecuteNonQuery();
+
+        Console.WriteLine($"{rows} fila actualitzada.");
+
+        dbConn.Close();
+    }
 }
