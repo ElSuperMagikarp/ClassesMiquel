@@ -4,10 +4,10 @@ using StoreProject.Model;
 
 namespace StoreProject.Repository;
 
-class ProductADO
+static class ProductADO
 {
 
-    public void Insert(DatabaseConnection dbConn, Product product)
+    public static void Insert(DatabaseConnection dbConn, Product product)
     {
         dbConn.Open();
 

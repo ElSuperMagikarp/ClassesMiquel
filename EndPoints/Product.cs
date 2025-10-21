@@ -8,6 +8,22 @@ public static class Endpoints
 {
     public static void MapProductEndpoints(this WebApplication app, DatabaseConnection dbConn)
     {
+        // POST /products
+        app.MapPost("/products", (ProductRequest req) =>
+        {
+            Product product = new Product
+            {
+                Id = Guid.NewGuid(),
+                Code = req.Code,
+                Name = req.Name,
+                Price = req.Price
+            };
+
+            ProductADO.Insert(dbConn, product);
+
+            return Results.Created($"/products/{product.Id}", product);
+        });
+
         // GET /products
         app.MapGet("/products", () =>
         {
@@ -23,23 +39,6 @@ public static class Endpoints
             return product is not null
                 ? Results.Ok(product)
                 : Results.NotFound(new { message = $"Product with Id {id} not found." });
-        });
-
-
-        // POST /products
-        app.MapPost("/products", (ProductRequest req) =>
-        {
-            Product productADO = new Product
-            {
-                Id = Guid.NewGuid(),
-                Code = req.Code,
-                Name = req.Name,
-                Price = req.Price
-            };
-
-            productADO.Insert(dbConn);
-
-            return Results.Created($"/products/{productADO.Id}", productADO);
         });
     }
 
