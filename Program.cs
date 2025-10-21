@@ -1,6 +1,6 @@
 ﻿using Microsoft.Extensions.Configuration;
-using dbdemo.Services;
-using dbdemo.Endpoints;
+using StoreDB.Services;
+using StoreDB.Endpoints;
 
 WebApplicationBuilder builder = WebApplication.CreateBuilder(args);
 

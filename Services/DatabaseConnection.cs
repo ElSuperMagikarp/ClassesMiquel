@@ -1,8 +1,8 @@
 using Microsoft.Data.SqlClient;
 using static System.Console;
-using dbdemo.Model;
+using StoreDB.Model;
 
-namespace dbdemo.Services;
+namespace StoreDB.Services;
 
 public class DatabaseConnection
 {

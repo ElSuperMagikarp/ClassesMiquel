@@ -1,8 +1,8 @@
-using dbdemo.Repository;
-using dbdemo.Services;
-using dbdemo.Model;
+using StoreDB.Repository;
+using StoreDB.Services;
+using StoreDB.Model;
 
-namespace dbdemo.Endpoints;
+namespace StoreDB.Endpoints;
 
 public static class Endpoints
 {

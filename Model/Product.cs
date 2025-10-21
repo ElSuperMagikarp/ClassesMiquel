@@ -1,4 +1,4 @@
-namespace dbdemo.Model;
+namespace StoreDB.Model;
 
 public class Product
 {
