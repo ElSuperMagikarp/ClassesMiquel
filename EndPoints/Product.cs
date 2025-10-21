@@ -11,36 +11,25 @@ public static class Endpoints
         // GET /products
         app.MapGet("/products", () =>
         {
-            List<ProductADO> products = ProductADO.GetAll(dbConn);
+            List<Product> products = ProductADO.GetAll(dbConn);
             return Results.Ok(products);
         });
 
         // GET Product by id
         app.MapGet("/products/{id}", (Guid id) =>
         {
-            ProductADO product = ProductADO.GetById(dbConn, id);
+            Product? product = ProductADO.GetById(dbConn, id);
 
             return product is not null
                 ? Results.Ok(product)
                 : Results.NotFound(new { message = $"Product with Id {id} not found." });
-
-            // if (product is not null)
-            // {
-            //     return Results.Ok(product);
-            // }
-            // else
-            // {
-            //     return Results.NotFound(new { message = $"Product with Id {id} not found." });
-            // }
         });
-
-
 
 
         // POST /products
         app.MapPost("/products", (ProductRequest req) =>
         {
-            ProductADO productADO = new ProductADO
+            Product productADO = new Product
             {
                 Id = Guid.NewGuid(),
                 Code = req.Code,
