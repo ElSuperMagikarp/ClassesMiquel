@@ -63,10 +63,10 @@ public static class Endpoints
 
             return Results.Ok(productUpdt);
         });
-    }
 
-    // DELETE /songs by id
-    app.MapDelete("/songs/{id}", (Guid id) => SongADO.Delete(dbConn, id)? Results.NoContent() : Results.NotFound());
+        // DELETE Product
+        app.MapDelete("/products/{id}", (Guid id) => ProductADO.Delete(dbConn, id) ? Results.NoContent() : Results.NotFound());
+    }
 }
 
 public record ProductRequest(string Code, string Name, decimal Price);  // Com ha de llegir el POST
