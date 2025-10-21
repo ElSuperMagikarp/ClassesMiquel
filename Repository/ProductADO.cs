@@ -1,8 +1,8 @@
 using Microsoft.Data.SqlClient;
 using static System.Console;
-using StoreDB.Services;
+using StoreProject.Services;
 
-namespace StoreDB.Repository;
+namespace StoreProject.Repository;
 
 class ProductADO
 {

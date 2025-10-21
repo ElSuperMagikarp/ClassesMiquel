@@ -1,8 +1,8 @@
-using StoreDB.Repository;
-using StoreDB.Services;
-using StoreDB.Model;
+using StoreProject.Repository;
+using StoreProject.Services;
+using StoreProject.Model;
 
-namespace StoreDB.EndPoints;
+namespace StoreProject.EndPoints;
 
 public static class Endpoints
 {

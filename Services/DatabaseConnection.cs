@@ -1,8 +1,8 @@
 using Microsoft.Data.SqlClient;
 using static System.Console;
-using StoreDB.Model;
+using StoreProject.Model;
 
-namespace StoreDB.Services;
+namespace StoreProject.Services;
 
 public class DatabaseConnection
 {
