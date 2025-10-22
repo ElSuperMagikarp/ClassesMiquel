@@ -1,0 +1,25 @@
+using Microsoft.Data.SqlClient;
+using StoreProject.Model;
+using StoreProject.Services;
+
+namespace StoreProject.Repository;
+
+static class ShoppingCartProductADO
+{
+    public static void Insert(DatabaseConnection dbConn, ShoppingCartProduct shoppingCartProduct)
+    {
+        dbConn.Open();
+
+        string sql = @"INSERT INTO ShoppingCartsProducts (Id, ShoppingCartId, ProductId)
+                        VALUES (@Id, @ShoppingCartId, @ProductId)";
+
+        using SqlCommand cmd = new SqlCommand(sql, dbConn.sqlConnection);
+        cmd.Parameters.AddWithValue("@Id", shoppingCartProduct.Id);
+        cmd.Parameters.AddWithValue("@ShoppingCartId", shoppingCartProduct.ShoppingCartId);
+        cmd.Parameters.AddWithValue("@ProductId", shoppingCartProduct.ProductId);
+
+        int rows = cmd.ExecuteNonQuery();
+        Console.WriteLine($"{rows} fila inserida.");
+        dbConn.Close();
+    }
+}
