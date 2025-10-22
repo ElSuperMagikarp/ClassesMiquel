@@ -20,5 +20,28 @@ public static class ShoppingCartEndpoints
 
             return Results.Created($"/shoppingCarts/{shoppingCart.Id}", shoppingCart);
         });
+
+        // POST afegir Product a ShoppingCart
+        app.MapPost("/shoppingCarts/{id}/add", (Guid id, ShoppingCartProductRequest req) =>
+        {
+            ShoppingCartProduct shoppingCartProduct = new ShoppingCartProduct
+            {
+                Id = Guid.NewGuid(),
+                ShoppingCartId = id,
+                ProductId = req.ProductId
+            };
+
+            ShoppingCartProductADO.Insert(dbConn, shoppingCartProduct);
+
+            return Results.Created($"/shoppingCarts/{id}", shoppingCartProduct);
+        });
     }
+
+    /*
+    /shoppingCarts/{id}/add
+
+    JSON -> ProductId
+    */
 }
+
+public record ShoppingCartProductRequest(Guid ProductId);  // Com ha de llegir el POST
