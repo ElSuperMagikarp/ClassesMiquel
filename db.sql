@@ -13,6 +13,7 @@ CREATE TABLE Products (
     Code NVARCHAR(50) NOT NULL ,    -- UNIQUE
     Name NVARCHAR(100) NOT NULL,
     Price DECIMAL(10, 2) NOT NULL,
+    Discount DECIMAL(5, 2) NOT NULL,
     CONSTRAINT FKProductsFamily FOREIGN KEY (FamilyId)
         REFERENCES ProductFamilies(Id)
 );
