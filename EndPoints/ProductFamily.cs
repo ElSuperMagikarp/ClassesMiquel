@@ -59,6 +59,9 @@ public static class ProductFamiliesEndpoints
 
             return Results.Ok(productFamilyUpdt);
         });
+
+        // DELETE Product Family
+        app.MapDelete("/productfamilies/{id}", (Guid id) => ProductFamilyADO.Delete(dbConn, id) ? Results.NoContent() : Results.NotFound());
     }
 }
 
