@@ -11,11 +11,12 @@ static class ProductADO
     {
         dbConn.Open();
 
-        string sql = @"INSERT INTO Products (Id, Code, Name, Price)
-                        VALUES (@Id, @Code, @Name, @Price)";
+        string sql = @"INSERT INTO Products (Id, FamilyId, Code, Name, Price)
+                        VALUES (@Id, @FamilyId, @Code, @Name, @Price)";
 
         using SqlCommand cmd = new SqlCommand(sql, dbConn.sqlConnection);
         cmd.Parameters.AddWithValue("@Id", product.Id);
+        cmd.Parameters.AddWithValue("@FamilyId", product.FamilyId);
         cmd.Parameters.AddWithValue("@Code", product.Code);
         cmd.Parameters.AddWithValue("@Name", product.Name);
         cmd.Parameters.AddWithValue("@Price", product.Price);
