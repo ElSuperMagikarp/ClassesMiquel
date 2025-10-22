@@ -21,3 +21,13 @@ CREATE TABLE Products (
 CREATE TABLE ShoppingCarts (
     Id UNIQUEIDENTIFIER NOT NULL PRIMARY KEY
 );
+
+CREATE TABLE ShoppingCartsProducts (
+    Id UNIQUEIDENTIFIER NOT NULL PRIMARY KEY,
+    ShoppingCartId UNIQUEIDENTIFIER NOT NULL,
+    ProductId UNIQUEIDENTIFIER NOT NULL,
+    CONSTRAINT FKShoppingCartsProductsShoppingCarts FOREIGN KEY (ShoppingCartId)
+        REFERENCES ShoppingCarts(Id),
+    CONSTRAINT FKShoppingCartsProductsProducts FOREIGN KEY (ProductId)
+        REFERENCES Products(Id)
+);
