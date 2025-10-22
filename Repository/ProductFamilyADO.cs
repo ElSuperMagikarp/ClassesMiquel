@@ -6,7 +6,7 @@ namespace StoreProject.Repository;
 
 static class ProductFamilyADO
 {
-    public static void Insert(DatabaseConnection dbConn, ProductFamily family)
+    public static void Insert(DatabaseConnection dbConn, ProductFamily productFamily)
     {
         dbConn.Open();
 
@@ -14,8 +14,8 @@ static class ProductFamilyADO
                         VALUES (@Id, @Name)";
 
         using SqlCommand cmd = new SqlCommand(sql, dbConn.sqlConnection);
-        cmd.Parameters.AddWithValue("@Id", family.Id);
-        cmd.Parameters.AddWithValue("@Name", family.Name);
+        cmd.Parameters.AddWithValue("@Id", productFamily.Id);
+        cmd.Parameters.AddWithValue("@Name", productFamily.Name);
 
         int rows = cmd.ExecuteNonQuery();
         Console.WriteLine($"{rows} fila inserida.");
@@ -24,7 +24,7 @@ static class ProductFamilyADO
 
     public static List<ProductFamily> GetAll(DatabaseConnection dbConn)
     {
-        List<ProductFamily> productfamilies = new();
+        List<ProductFamily> productFamilies = new();
 
         dbConn.Open();
         string sql = "SELECT Id, Name FROM ProductFamilies";
@@ -34,7 +34,7 @@ static class ProductFamilyADO
 
         while (reader.Read())
         {
-            productfamilies.Add(new ProductFamily
+            productFamilies.Add(new ProductFamily
             {
                 Id = reader.GetGuid(0),
                 Name = reader.GetString(1)
@@ -42,7 +42,31 @@ static class ProductFamilyADO
         }
 
         dbConn.Close();
-        return productfamilies;
+        return productFamilies;
+    }
+
+    public static ProductFamily? GetById(DatabaseConnection dbConn, Guid id)
+    {
+        dbConn.Open();
+        string sql = "SELECT Id, Name FROM ProductFamilies WHERE Id = @Id";
+
+        using SqlCommand cmd = new SqlCommand(sql, dbConn.sqlConnection);
+        cmd.Parameters.AddWithValue("@Id", id);
+
+        using SqlDataReader reader = cmd.ExecuteReader();
+        ProductFamily? productFamily = null;
+
+        if (reader.Read())
+        {
+            productFamily = new ProductFamily
+            {
+                Id = reader.GetGuid(0),
+                Name = reader.GetString(1)
+            };
+        }
+
+        dbConn.Close();
+        return productFamily;
     }
 }
 
