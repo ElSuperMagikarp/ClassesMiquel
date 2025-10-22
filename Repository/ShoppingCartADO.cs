@@ -22,7 +22,3 @@ static class ShoppingCartADO
         dbConn.Close();
     }
 }
-
-/*CREATE TABLE ShoppingCarts (
-    Id UNIQUEIDENTIFIER NOT NULL PRIMARY KEY
-);*/
