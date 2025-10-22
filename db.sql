@@ -17,3 +17,7 @@ CREATE TABLE Products (
     CONSTRAINT FKProductsFamily FOREIGN KEY (FamilyId)
         REFERENCES ProductFamilies(Id)
 );
+
+CREATE TABLE ShoppingCarts (
+    Id UNIQUEIDENTIFIER NOT NULL PRIMARY KEY
+);
