@@ -22,4 +22,20 @@ static class ShoppingCartProductADO
         Console.WriteLine($"{rows} fila inserida.");
         dbConn.Close();
     }
+
+    public static bool Delete(DatabaseConnection dbConn, Guid id)
+    {
+        dbConn.Open();
+
+        string sql = @"DELETE FROM ShoppingCartsProducts WHERE Id = @Id";
+
+        using SqlCommand cmd = new SqlCommand(sql, dbConn.sqlConnection);
+        cmd.Parameters.AddWithValue("@Id", id);
+
+        int rows = cmd.ExecuteNonQuery();
+
+        dbConn.Close();
+
+        return rows > 0;
+    }
 }
