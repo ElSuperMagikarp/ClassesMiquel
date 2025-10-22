@@ -2,5 +2,5 @@ namespace StoreProject.Model;
 
 public class ShoppingCart
 {
-    Guid id { get; set; }
+    Guid Id { get; set; }
 }
