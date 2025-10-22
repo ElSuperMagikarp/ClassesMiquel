@@ -38,6 +38,27 @@ public static class ProductFamiliesEndpoints
                 ? Results.Ok(productFamily)
                 : Results.NotFound(new { message = $"Product Family with Id {id} not found." });
         });
+
+        // PUT Product Family
+        app.MapPut("/productfamilies/{id}", (Guid id, ProductFamilyRequest req) =>
+        {
+            ProductFamily? productFamily = ProductFamilyADO.GetById(dbConn, id);
+
+            if (productFamily == null)
+            {
+                return Results.NotFound();
+            }
+
+            ProductFamily productFamilyUpdt = new ProductFamily
+            {
+                Id = id,
+                Name = req.Name
+            };
+
+            ProductFamilyADO.Update(dbConn, productFamilyUpdt);
+
+            return Results.Ok(productFamilyUpdt);
+        });
     }
 }
 
