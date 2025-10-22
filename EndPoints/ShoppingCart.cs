@@ -9,7 +9,7 @@ public static class ShoppingCartEndpoints
     public static void MapShoppingCartEndpoints(this WebApplication app, DatabaseConnection dbConn)
     {
         // POST /shoppingCart
-        app.MapPost("/shoppingCart", () =>
+        app.MapPost("/shoppingCarts", () =>
         {
             ShoppingCart shoppingCart = new ShoppingCart
             {
@@ -18,7 +18,7 @@ public static class ShoppingCartEndpoints
 
             ShoppingCartADO.Insert(dbConn, shoppingCart);
 
-            return Results.Created($"/shoppingCart/{shoppingCart.Id}", shoppingCart);
+            return Results.Created($"/shoppingCarts/{shoppingCart.Id}", shoppingCart);
         });
     }
 }
