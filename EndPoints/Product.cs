@@ -17,7 +17,8 @@ public static class ProductEndpoints
                 FamilyId = req.FamilyId,
                 Code = req.Code,
                 Name = req.Name,
-                Price = req.Price
+                Price = req.Price,
+                Discount = req.Discount
             };
 
             ProductADO.Insert(dbConn, product);
@@ -58,7 +59,8 @@ public static class ProductEndpoints
                 FamilyId = req.FamilyId,
                 Code = req.Code,
                 Name = req.Name,
-                Price = req.Price
+                Price = req.Price,
+                Discount = req.Discount
             };
 
             ProductADO.Update(dbConn, productUpdt);
@@ -71,4 +73,4 @@ public static class ProductEndpoints
     }
 }
 
-public record ProductRequest(Guid FamilyId, string Code, string Name, decimal Price);  // Com ha de llegir el POST
+public record ProductRequest(Guid FamilyId, string Code, string Name, decimal Price, decimal Discount);  // Com ha de llegir el POST
