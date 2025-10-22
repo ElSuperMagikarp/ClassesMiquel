@@ -63,4 +63,14 @@
 ### DELETE
 ``` JSON
 // DELETE http://localhost:5000/productfamilies/{id}
-``` 
+```  
+  
+<br><br>
+  
+# Shopping Cart
+### POST | Insert
+``` JSON
+// POST http://localhost:5000/productfamilies
+
+// No fa falta cos, perque només té una ID i es genera automàticament
+```  
