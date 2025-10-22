@@ -7,7 +7,8 @@
     "familyId" : "familyId 1",
     "code" : "codi1",
     "name" : "Nom Producte 1",
-    "price" : 1
+    "price" : 1,
+    "discount" : 2
 }
 ```  
 
@@ -24,7 +25,8 @@
     "familyId" : "UPDATED familyId",
     "code": "UPDATED codi",
     "name": "UPDATED Nom Producte",
-    "price": 999
+    "price": 999,
+    "discount" : 50
 }
 ```  
 
