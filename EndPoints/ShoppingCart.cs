@@ -35,13 +35,10 @@ public static class ShoppingCartEndpoints
 
             return Results.Created($"/shoppingCarts/{id}", shoppingCartProduct);
         });
+
+        // DELETE Treure Product de ShoppingCart
+        app.MapDelete("/shoppingCarts/{id}/remove", (Guid id) => ShoppingCartProductADO.Delete(dbConn, id) ? Results.NoContent() : Results.NotFound());
     }
-
-    /*
-    /shoppingCarts/{id}/add
-
-    JSON -> ProductId
-    */
 }
 
 public record ShoppingCartProductRequest(Guid ProductId);  // Com ha de llegir el POST
