@@ -28,6 +28,16 @@ public static class ProductFamiliesEndpoints
             List<ProductFamily> productfamilies = ProductFamilyADO.GetAll(dbConn);
             return Results.Ok(productfamilies);
         });
+
+        // GET Product Family by id
+        app.MapGet("/productfamilies/{id}", (Guid id) =>
+        {
+            ProductFamily? productFamily = ProductFamilyADO.GetById(dbConn, id);
+
+            return productFamily is not null
+                ? Results.Ok(productFamily)
+                : Results.NotFound(new { message = $"Product Family with Id {id} not found." });
+        });
     }
 }
 
