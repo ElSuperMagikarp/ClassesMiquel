@@ -14,6 +14,7 @@ public static class ProductEndpoints
             Product product = new Product
             {
                 Id = Guid.NewGuid(),
+                FamilyId = req.FamilyId,
                 Code = req.Code,
                 Name = req.Name,
                 Price = req.Price
@@ -69,4 +70,4 @@ public static class ProductEndpoints
     }
 }
 
-public record ProductRequest(string Code, string Name, decimal Price);  // Com ha de llegir el POST
+public record ProductRequest(Guid FamilyId, string Code, string Name, decimal Price);  // Com ha de llegir el POST
