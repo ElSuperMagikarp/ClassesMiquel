@@ -8,7 +8,7 @@ public static class ProductFamiliesEndpoints
 {
     public static void MapProductFamilyEndpoints(this WebApplication app, DatabaseConnection dbConn)
     {
-        // POST /products
+        // POST /productfamilies
         app.MapPost("/productfamilies", (ProductFamilyRequest req) =>
         {
             ProductFamily productFamily = new ProductFamily
@@ -20,6 +20,13 @@ public static class ProductFamiliesEndpoints
             ProductFamilyADO.Insert(dbConn, productFamily);
 
             return Results.Created($"/productfamilies/{productFamily.Id}", productFamily);
+        });
+
+        // GET /productfamilies
+        app.MapGet("/productfamilies", () =>
+        {
+            List<ProductFamily> productfamilies = ProductFamilyADO.GetAll(dbConn);
+            return Results.Ok(productfamilies);
         });
     }
 }
