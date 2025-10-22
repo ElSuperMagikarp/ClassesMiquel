@@ -31,7 +31,7 @@ static class ProductADO
         List<Product> products = new();
 
         dbConn.Open();
-        string sql = "SELECT Id, Code, Name, Price FROM Products";
+        string sql = "SELECT Id, FamilyId, Code, Name, Price FROM Products";
 
         using SqlCommand cmd = new SqlCommand(sql, dbConn.sqlConnection);
         using SqlDataReader reader = cmd.ExecuteReader();
@@ -41,9 +41,10 @@ static class ProductADO
             products.Add(new Product
             {
                 Id = reader.GetGuid(0),
-                Code = reader.GetString(1),
-                Name = reader.GetString(2),
-                Price = reader.GetDecimal(3)
+                FamilyId = reader.GetGuid(1),
+                Code = reader.GetString(2),
+                Name = reader.GetString(3),
+                Price = reader.GetDecimal(4)
             });
         }
 
@@ -54,7 +55,7 @@ static class ProductADO
     public static Product? GetById(DatabaseConnection dbConn, Guid id)
     {
         dbConn.Open();
-        string sql = "SELECT Id, Code, Name, Price FROM Products WHERE Id = @Id";
+        string sql = "SELECT Id, FamilyId, Code, Name, Price FROM Products WHERE Id = @Id";
 
         using SqlCommand cmd = new SqlCommand(sql, dbConn.sqlConnection);
         cmd.Parameters.AddWithValue("@Id", id);
@@ -67,9 +68,10 @@ static class ProductADO
             product = new Product
             {
                 Id = reader.GetGuid(0),
-                Code = reader.GetString(1),
-                Name = reader.GetString(2),
-                Price = reader.GetDecimal(3)
+                FamilyId = reader.GetGuid(1),
+                Code = reader.GetString(2),
+                Name = reader.GetString(3),
+                Price = reader.GetDecimal(4)
             };
         }
 
@@ -82,13 +84,15 @@ static class ProductADO
         dbConn.Open();
 
         string sql = @"UPDATE Products
-                    SET Code = @Code,
+                    SET FamilyId = @FamilyId,
+                        Code = @Code,
                         Name = @Name,
                         Price = @Price
                     WHERE Id = @Id";
 
         using SqlCommand cmd = new SqlCommand(sql, dbConn.sqlConnection);
         cmd.Parameters.AddWithValue("@Id", product.Id);
+        cmd.Parameters.AddWithValue("@FamilyId", product.FamilyId);
         cmd.Parameters.AddWithValue("@Code", product.Code);
         cmd.Parameters.AddWithValue("@Name", product.Name);
         cmd.Parameters.AddWithValue("@Price", product.Price);
