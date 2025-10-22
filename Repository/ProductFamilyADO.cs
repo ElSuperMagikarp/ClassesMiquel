@@ -68,6 +68,25 @@ static class ProductFamilyADO
         dbConn.Close();
         return productFamily;
     }
+
+    public static void Update(DatabaseConnection dbConn, ProductFamily productFamily)
+    {
+        dbConn.Open();
+
+        string sql = @"UPDATE ProductFamilies
+                    SET Name = @Name
+                    WHERE Id = @Id";
+
+        using SqlCommand cmd = new SqlCommand(sql, dbConn.sqlConnection);
+        cmd.Parameters.AddWithValue("@Id", productFamily.Id);
+        cmd.Parameters.AddWithValue("@Name", productFamily.Name);
+
+        int rows = cmd.ExecuteNonQuery();
+
+        Console.WriteLine($"{rows} fila actualitzada.");
+
+        dbConn.Close();
+    }
 }
 
 /*CREATE TABLE ProductFamilies (
