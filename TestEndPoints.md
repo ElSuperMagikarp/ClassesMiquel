@@ -74,3 +74,11 @@
 
 // No fa falta cos, perque només té una ID i es genera automàticament
 ```  
+### POST | Afegir Producte a Carro
+``` JSON
+// POST http://localhost:5000/shoppingCarts/{id}/add
+
+{
+    "productId" : "producteId"
+}
+```  
