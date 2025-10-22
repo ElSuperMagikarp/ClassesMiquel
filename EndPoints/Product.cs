@@ -4,7 +4,7 @@ using StoreProject.Model;
 
 namespace StoreProject.EndPoints;
 
-public static class Endpoints
+public static class ProductEndpoints
 {
     public static void MapProductEndpoints(this WebApplication app, DatabaseConnection dbConn)
     {
