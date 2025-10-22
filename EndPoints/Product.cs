@@ -55,6 +55,7 @@ public static class ProductEndpoints
             Product productUpdt = new Product
             {
                 Id = id,
+                FamilyId = req.FamilyId,
                 Code = req.Code,
                 Name = req.Name,
                 Price = req.Price
