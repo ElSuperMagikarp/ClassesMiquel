@@ -1,0 +1,44 @@
+# Store Project
+- [x] SQL
+- [x] Fitxer configuració
+- [x] Fitxer de projecte
+- [x] Programa principal
+- [x] Services
+    - [x] Database connection
+- [x] Model
+    - [x] Producte
+    - [x] Familia Producte
+    - [x] Carrito de compra
+    - [x] Relació Producte-Carrito
+- [ ] Repository
+    - [x] Producte ADO
+    - [x] Familia Producte ADO
+    - [x] Carrito de compra ADO
+    - [/] Relació Producte-Carrito ADO *(No se si està bé)*
+- [ ] EndPoints
+    - [x] Producte
+    - [x] Familia Producte
+    - [/] Carrito de compra *(No se si està bé i no ho he provat)*
+- [ ] Peticións Postman
+    - [x] Producte
+    - [x] Familia Producte
+    - [ ] Carrito de compra
+- [ ] **ALTRES**
+    - [ ] Canviar EndPoints a una classe central (per fer MapEndpoints)
+    - [ ] DTO
+        - [ ] Response
+        - [ ] Request
+    - [ ] Validators
+        - [ ] Producte
+        - [ ] Familia Producte
+        - [ ] Carrito de compra
+    - [ ] Common
+        - [ ] Result
+    - [ ] Posar rols
+    - [ ] Afegir versió als Endpoint
+
+## DUBTES
+- [ ] No es pot fer GET dels productes del carrito
+- [ ] Preguntar si el Request de ShoppingCartProduct està bé
+- [ ] Preguntar si el Delete de ShoppingCartProduct està bé
+- [ ] Preguntar com fer el DELETE de ShoppingCart (EndPoint)
