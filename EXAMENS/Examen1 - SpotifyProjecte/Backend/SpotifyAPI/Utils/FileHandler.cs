@@ -4,35 +4,60 @@ using SpotifyAPI.Services;
 
 namespace SpotifyAPI.Utils;
 
+public enum FileType
+{
+    None,
+    Song,
+    Image
+}
+
 public static class FileHandler
 {
-    public static void InsertFiles(SpotifyDBConnection dbConn, Guid id, IFormFile[] files)
+    public static void InsertFiles(SpotifyDBConnection dbConn, Guid id, IFormFile[] files, FileType fileType)
     {
         List<Task> tasks = new List<Task>();
         foreach (IFormFile file in files)
         {
-            tasks.Add(Task.Run(() => InsertFile(dbConn, id, file)));
+            tasks.Add(Task.Run(() => InsertFile(dbConn, id, file, fileType)));
         }
         Task.WaitAll(tasks.ToArray());
     }
 
-    private static async void InsertFile(SpotifyDBConnection dbConn, Guid id, IFormFile file)
+    private static async void InsertFile(SpotifyDBConnection dbConn, Guid id, IFormFile file, FileType fileType)
     {
         Console.WriteLine($"PROCESSING FILE {file.Name}");
         string filePath = await SaveFile(id, file);
 
-        SongFile songFile = new SongFile
+        switch (fileType)
         {
-            Id = Guid.NewGuid(),
-            SongId = id,
-            Url = filePath
-        };
+            case FileType.Song:
+                SongFile songFile = new SongFile
+                {
+                    Id = Guid.NewGuid(),
+                    SongId = id,
+                    Url = filePath
+                };
 
-        SongFileADO.Insert(dbConn, songFile);
+                SongFileADO.Insert(dbConn, songFile);
+                break;
+            case FileType.Image:
+                ProfileImage profileImage = new ProfileImage
+                {
+                    Id = Guid.NewGuid(),
+                    Url = filePath
+                };
+
+                ProfileImageADO.Insert(dbConn, profileImage);
+                break;
+            case FileType.None:
+                Console.Error.Write("InserFile cannot handle FileType.None");
+                break;
+        }
+
 
         Console.WriteLine($"FILE {file.Name} FINISHED PROCESSING");
 
-        ExtractMetadata(filePath);
+        ExtractSongMetadata(filePath);
     }
 
     private static async Task<string> SaveFile(Guid id, IFormFile file)
@@ -53,7 +78,7 @@ public static class FileHandler
         return filePath;
     }
 
-    public static void ExtractMetadata(string filePath)
+    public static void ExtractSongMetadata(string filePath)
     {
         TagLib.File tagFile = TagLib.File.Create(filePath);
 

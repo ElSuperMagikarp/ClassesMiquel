@@ -17,6 +17,7 @@ WebApplication SpotifyApp = builder.Build();
 
 SpotifyApp.MapUserEndpoints(dbConn);
 SpotifyApp.MapProfileEndpoints(dbConn);
+SpotifyApp.MapProfileImageEndpoints(dbConn);
 SpotifyApp.MapRoleEndpoints(dbConn);
 SpotifyApp.MapSongEndpoints(dbConn);
 SpotifyApp.MapPlaylistEndpoints(dbConn);
