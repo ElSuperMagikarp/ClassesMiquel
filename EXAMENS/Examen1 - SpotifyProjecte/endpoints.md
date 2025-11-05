@@ -17,4 +17,15 @@
     "isActive": false
 }
 // DELETE http://localhost:5000/profiles/id --- Eliminar un perfil per id
+
+// POST http://localhost:5000/profiles/profileId/profileImage/profileImageId    --- Posar imatge a perfil
+// DELETE http://localhost:5000/profiles/profileId/profileImage/profileImageId  --- Treure imatge de perfil
+```
+## Profile Image
+``` JSON
+// POST http://localhost:5000/profileImages --- Pujar imatges de perfil
+BODY: form-data
+KEY: files (Type: File)
+VALUE: Poses els fitxers (tots en un valor. Si ho fas en varis només extreu metadades d'un)
+// DELETE http://localhost:5000/profileImages/id
 ```

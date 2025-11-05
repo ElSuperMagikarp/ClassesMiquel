@@ -74,5 +74,23 @@ public static class ProfileEndpoints
 
         // DELETE /profiles
         app.MapDelete("/profiles/{id}", (Guid id) => ProfileADO.Delete(dbConn, id) ? Results.NoContent() : Results.NotFound());
+
+        // POST afegir ProfileImage a Profile
+        app.MapPost("/profiles/{profileId}/profileImage/{profileImageId}", (Guid profileId, Guid profileImageId) =>
+        {
+            ProfileProfileImages profileProfileImages = new ProfileProfileImages
+            {
+                Id = Guid.NewGuid(),
+                ProfileId = profileId,
+                ProfileImageId = profileImageId
+            };
+
+            ProfileProfileImagesADO.Insert(dbConn, profileProfileImages);
+
+            return Results.Created($"/profiles/{profileId}", profileProfileImages);
+        });
+
+        // DELETE treure Imatge de perfil
+        app.MapDelete("/profiles/{profileId}/profileImage/{profileImageId}", (Guid profileId, Guid profileImageId) => ProfileProfileImagesADO.Delete(dbConn, profileId, profileImageId) ? Results.NoContent() : Results.NotFound());
     }
 }
