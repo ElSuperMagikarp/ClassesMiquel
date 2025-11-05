@@ -95,7 +95,7 @@ public static class SongEndpoints
             if (song is null)
                 return Results.NotFound(new { message = $"Song with Id {id} not found." });
 
-            FileHandler.InsertFiles(dbConn, id, filesArray);
+            FileHandler.InsertSongFiles(dbConn, id, filesArray);
 
             return Results.Ok(new { message = "Files successfully uploaded", files });
         })

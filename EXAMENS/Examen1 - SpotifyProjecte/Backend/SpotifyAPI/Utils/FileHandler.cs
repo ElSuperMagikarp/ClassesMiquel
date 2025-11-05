@@ -4,55 +4,40 @@ using SpotifyAPI.Services;
 
 namespace SpotifyAPI.Utils;
 
-public enum FileType
-{
-    None,
-    Song,
-    Image
-}
-
 public static class FileHandler
 {
-    public static void InsertFiles(SpotifyDBConnection dbConn, Guid id, IFormFile[] files, FileType fileType)
+    // SONG FILES
+    public static void InsertSongFiles(SpotifyDBConnection dbConn, Guid id, IFormFile[] files)
     {
         List<Task> tasks = new List<Task>();
         foreach (IFormFile file in files)
         {
-            tasks.Add(Task.Run(() => InsertFile(dbConn, id, file, fileType)));
+            tasks.Add(Task.Run(() => InsertSongFile(dbConn, id, file)));
         }
         Task.WaitAll(tasks.ToArray());
     }
 
-    private static async void InsertFile(SpotifyDBConnection dbConn, Guid id, IFormFile file, FileType fileType)
+    private static async void InsertSongFile(SpotifyDBConnection dbConn, Guid id, IFormFile file)
     {
         Console.WriteLine($"PROCESSING FILE {file.Name}");
         string filePath = await SaveFile(id, file);
 
-        switch (fileType)
+        SongFile songFile = new SongFile
         {
-            case FileType.Song:
-                SongFile songFile = new SongFile
-                {
-                    Id = Guid.NewGuid(),
-                    SongId = id,
-                    Url = filePath
-                };
+            Id = Guid.NewGuid(),
+            SongId = id,
+            Url = filePath
+        };
 
-                SongFileADO.Insert(dbConn, songFile);
-                break;
-            case FileType.Image:
-                ProfileImage profileImage = new ProfileImage
-                {
-                    Id = Guid.NewGuid(),
-                    Url = filePath
-                };
+        SongFileADO.Insert(dbConn, songFile);
 
-                ProfileImageADO.Insert(dbConn, profileImage);
-                break;
-            case FileType.None:
-                Console.Error.Write("InserFile cannot handle FileType.None");
-                break;
-        }
+        ProfileImage profileImage = new ProfileImage
+        {
+            Id = Guid.NewGuid(),
+            Url = filePath
+        };
+
+        ProfileImageADO.Insert(dbConn, profileImage);
 
 
         Console.WriteLine($"FILE {file.Name} FINISHED PROCESSING");
@@ -60,7 +45,37 @@ public static class FileHandler
         ExtractSongMetadata(filePath);
     }
 
-    private static async Task<string> SaveFile(Guid id, IFormFile file)
+    // IMAGE FILES
+    public static void InsertImageFiles(SpotifyDBConnection dbConn, IFormFile[] files)
+    {
+        List<Task> tasks = new List<Task>();
+        foreach (IFormFile file in files)
+        {
+            tasks.Add(Task.Run(() => InsertImageFile(dbConn, file)));
+        }
+        Task.WaitAll(tasks.ToArray());
+    }
+
+    private static async void InsertImageFile(SpotifyDBConnection dbConn, IFormFile file)
+    {
+        Console.WriteLine($"PROCESSING FILE {file.Name}");
+        string filePath = await SaveFile(null, file);
+
+        ProfileImage profileImage = new ProfileImage
+        {
+            Id = Guid.NewGuid(),
+            Url = filePath
+        };
+
+        ProfileImageADO.Insert(dbConn, profileImage);
+
+        Console.WriteLine($"FILE {file.Name} FINISHED PROCESSING");
+
+        ExtractImageMetadata(filePath);
+    }
+
+    // OTHERS
+    private static async Task<string> SaveFile(Guid? id, IFormFile file)
     {
         string uploadsFolder = Path.Combine(Directory.GetCurrentDirectory(), "uploads");
 
@@ -76,6 +91,20 @@ public static class FileHandler
         }
 
         return filePath;
+    }
+
+    public static bool DeleteFile(string filePath)
+    {
+        string uploadsFolder = Path.Combine(Directory.GetCurrentDirectory(), "uploads");
+
+        if (!Directory.Exists(uploadsFolder))
+            return false;
+
+        if (!File.Exists(filePath))
+            return false;
+
+        File.Delete(filePath);
+        return true;
     }
 
     public static void ExtractSongMetadata(string filePath)
@@ -94,5 +123,11 @@ public static class FileHandler
         Console.WriteLine($"Album: {songAlbum}");
         Console.WriteLine($"Duration: {songDuration}");
         Console.WriteLine($"Genres: {songGenres}");
+    }
+
+    public static void ExtractImageMetadata(string filePath)
+    {
+        Console.WriteLine($"Extracting Metadata from file {filePath}");
+        Console.WriteLine($"METADATA EXTRACTION NOT IMPLEMENTED");
     }
 }
