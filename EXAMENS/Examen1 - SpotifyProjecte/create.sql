@@ -3,9 +3,12 @@ Use SpotifyDB;
 
 CREATE TABLE Profiles (
 	Id UNIQUEIDENTIFIER NOT NULL PRIMARY KEY,
+    UserId UNIQUEIDENTIFIER NOT NULL,
 	Name NVARCHAR(50) NOT NULL,
 	Description NVARCHAR(255),
-    IsActive BIT DEFAULT 0
+    IsActive BIT DEFAULT 0,
+    CONSTRAINT ProfilesUser FOREIGN KEY (UserId)
+        REFERENCES Users(Id)
 );
 
 CREATE TABLE ProfilesImages (
@@ -102,7 +105,3 @@ CREATE TABLE PlaylistSongs (
     CONSTRAINT FKPlaylistSongsSongs FOREIGN KEY (SongId)
         REFERENCES Songs(Id)
 );
-
-
-
-
