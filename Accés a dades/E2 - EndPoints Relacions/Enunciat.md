@@ -26,35 +26,58 @@
 
 ## Funcionalitats
 
-- Donar d'alta un vehicle a la base de dades.
+> ## Plantilla  
+>**Context:** Context  
+>**Es fa sobre:** Sobre  
+>**EndPoint:** `VERB /url/`  
+>**Json:**
+>``` JSON
+>    {
+>        "propietat" : "PROPIETAT"
+>    }
+>```
 
-- Crear un manteniment pel vehicle X. L'usuari obrirà la fitxa del vehicle i polsarà sobre el botó "Afegir" associat a la funcionalitat de manteniments.
+### Donar d'alta un vehicle a la base de dades.
 
-- Modificar les hores d'un determinat manteniment. L'usuari seleccionarà el manteniment de la llista de manteniments associats a un vehicle i indicarà el total d'hores que s'hi vol imputar.
+**Context:** Vehicles  
+**Es fa sobre:** Vehicles  
+**EndPoint:** `POST /vehicles/`  
+**Json:**
+``` JSON
+    {
+        "matricula" : "MATRICULA",
+        "model" : "MODEL",
+        "propietari" : "IDPROPIETARI"
+    }
+```
 
-- Llistar tots els manteniments d'un vehicle.
+### Crear un manteniment pel vehicle X. L'usuari obrirà la fitxa del vehicle i polsarà sobre el botó "Afegir" associat a la funcionalitat de manteniments.
 
-- Crear un nou treballador. 
+### Modificar les hores d'un determinat manteniment. L'usuari seleccionarà el manteniment de la llista de manteniments associats a un vehicle i indicarà el total d'hores que s'hi vol imputar.
 
-- Obtenir l'import d'un manteniment.  
+### Llistar tots els manteniments d'un vehicle.
 
-- Obtenir l'import de tots els manteniments que s'han fet a un vehicle.  
+### Crear un nou treballador. 
 
-- Obtenir totes les hores treballades per un treballador.
+### Obtenir l'import d'un manteniment.  
 
-- Llistar tots els manteniments en què ha participat un treballador.
+### Obtenir l'import de tots els manteniments que s'han fet a un vehicle.  
 
-- Obtenir el cost total d’un treballador (hores × preu).
+### Obtenir totes les hores treballades per un treballador.
 
-- Assignar un treballador a un manteniment.
+### Llistar tots els manteniments en què ha participat un treballador.
 
-- Consultar tots els treballadors assignats a un manteniment.
+### Obtenir el cost total d’un treballador (hores × preu).
 
-- Canviar el propietari d’un vehicle.
+### Assignar un treballador a un manteniment.
 
-- Actualitzar dades d’un treballador.  
+### Consultar tots els treballadors assignats a un manteniment.
 
-- Incrementar el preu hora associat a un treballador.
+### Canviar el propietari d’un vehicle.
+
+### Actualitzar dades d’un treballador.  
+
+### Incrementar el preu hora associat a un treballador.
 
 ## Tasca
 
