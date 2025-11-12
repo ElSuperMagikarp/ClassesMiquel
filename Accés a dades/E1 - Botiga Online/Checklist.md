@@ -1,5 +1,7 @@
 # Store Project
 - [x] SQL
+    - [ ] Falta Usuari
+    - [ ] Falta Descompte
 - [x] Fitxer configuració
 - [x] Fitxer de projecte
 - [x] Programa principal
@@ -9,25 +11,42 @@
     - [x] Producte
     - [x] Familia Producte
     - [x] Carrito de compra
+        - [ ] Afegir Id Usuari
     - [x] Relació Producte-Carrito
+    - [ ] Usuari
+        - [ ] IUsuari
+        - [ ] Usuari Normal
+        - [ ] Usuari Premium
+    - [ ] Descompte
+        - [ ] IDescompte
+        - [ ] Descompte Normal
+        - [ ] Descompte Premium
 - [ ] Repository
     - [x] Producte ADO
     - [x] Familia Producte ADO
     - [x] Carrito de compra ADO
-    - [/] Relació Producte-Carrito ADO *(No se si està bé)*
+    - [x] Relació Producte-Carrito ADO
 - [ ] EndPoints
     - [x] Producte
     - [x] Familia Producte
-    - [/] Carrito de compra *(No se si està bé i no ho he provat)*
+    - [/] Carrito de compra *(S'ha de moure relació amb producte a ShoppingCartProduct)*
+        - [ ] carro/{id}/import
+    - [ ] Relació Producte-Carrito
 - [ ] Peticións Postman
     - [x] Producte
     - [x] Familia Producte
     - [ ] Carrito de compra
+- [ ] DTO
+    - [ ] Producte Response
+    - [ ] Producte Request
+    - [ ] Familia Response
+    - [ ] Familia Request
+    - [ ] Carrito Response
+    - [ ] Carrito Request
+- [ ] Factories
+    - [ ] Descompte
 - [ ] **ALTRES**
     - [ ] Canviar EndPoints a una classe central (per fer MapEndpoints)
-    - [ ] DTO
-        - [ ] Response
-        - [ ] Request
     - [ ] Validators
         - [ ] Producte
         - [ ] Familia Producte
@@ -38,7 +57,5 @@
     - [ ] Afegir versió als Endpoint
 
 ## DUBTES
-- [ ] No es pot fer GET dels productes del carrito
-- [ ] Preguntar si el Request de ShoppingCartProduct està bé
-- [ ] Preguntar si el Delete de ShoppingCartProduct està bé
-- [ ] Preguntar com fer el DELETE de ShoppingCart (EndPoint)
+- [x] No es pot fer GET dels productes del carrito -> S'hauria de fer, pero no fa falta
+- [x] Preguntar com fer el DELETE de ShoppingCart (EndPoint) -> DELETE /shoppingCartProduct/{id} a Endpoint ShoppingCartProduct
