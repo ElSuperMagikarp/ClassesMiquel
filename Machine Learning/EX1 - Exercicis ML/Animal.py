@@ -12,8 +12,8 @@ def classifica_animal(pel, pes):
 
 parser = argparse.ArgumentParser("")
 
-parser.add_argument("pel", help="Si l'animal te pel o no", type=int)
-parser.add_argument("pes", help="Pes del animal amb kgs", type=int)
+parser.add_argument("pel", help="Si l'animal te pel o no (0 = False, 1 = True)", type=int)
+parser.add_argument("pes", help="Pes del animal en kgs", type=float)
 
 args = parser.parse_args()
 
