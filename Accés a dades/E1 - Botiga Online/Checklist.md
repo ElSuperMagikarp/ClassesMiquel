@@ -31,10 +31,11 @@
     - [x] Familia Producte
     - [/] Carrito de compra *(S'ha de moure relació amb producte a ShoppingCartProduct)*
         - [ ] carro/{id}/import
+        - [ ] QueryString import
     - [ ] Relació Producte-Carrito
 - [ ] Peticións Postman
-    - [x] Producte
-    - [x] Familia Producte
+    - [ ] Producte
+    - [ ] Familia Producte
     - [ ] Carrito de compra
 - [ ] DTO
     - [ ] Producte Response
@@ -43,14 +44,14 @@
     - [ ] Familia Request
     - [ ] Carrito Response
     - [ ] Carrito Request
+- [ ] Validators
+    - [ ] Producte
+    - [ ] Familia Producte
+    - [ ] Carrito de compra
 - [ ] Factories
     - [ ] Descompte
 - [ ] **ALTRES**
     - [ ] Canviar EndPoints a una classe central (per fer MapEndpoints)
-    - [ ] Validators
-        - [ ] Producte
-        - [ ] Familia Producte
-        - [ ] Carrito de compra
     - [ ] Common
         - [ ] Result
     - [ ] Posar rols
@@ -59,3 +60,16 @@
 ## DUBTES
 - [x] No es pot fer GET dels productes del carrito -> S'hauria de fer, pero no fa falta
 - [x] Preguntar com fer el DELETE de ShoppingCart (EndPoint) -> DELETE /shoppingCartProduct/{id} a Endpoint ShoppingCartProduct
+
+
+## DISCOUNT
+
+IDiscount:
+- calcularDte()
+
+PremiumDiscount:
+- dte1 -> float (0.1)
+- dte2 -> float (0.08 si import > 1000)
+
+NormalDiscount:
+- dte1 -> float (0.1 si import > 3000 o 0.15 si > 7000)
