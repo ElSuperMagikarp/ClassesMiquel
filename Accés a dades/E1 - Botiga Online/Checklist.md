@@ -17,10 +17,10 @@
         - [ ] IUsuari
         - [ ] Usuari Normal
         - [ ] Usuari Premium
-    - [ ] Descompte
-        - [ ] IDescompte
-        - [ ] Descompte Normal
-        - [ ] Descompte Premium
+    - [x] Descompte
+        - [x] IDescompte
+        - [x] Descompte Normal
+        - [x] Descompte Premium
 - [ ] Repository
     - [x] Producte ADO
     - [x] Familia Producte ADO
