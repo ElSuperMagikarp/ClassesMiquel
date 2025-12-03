@@ -2,7 +2,7 @@ using StoreProject.Model;
 
 namespace StoreProject.DTO;
 
-public record ShoppingCartProductRequest(Guid shoppingCartId, Guid productId)
+public record ShoppingCartProductRequest(Guid shoppingCartId, Guid productId, int quantity)
 {
     public ShoppingCartProduct ToShoppingCartProduct(Guid id)
     {
@@ -10,7 +10,8 @@ public record ShoppingCartProductRequest(Guid shoppingCartId, Guid productId)
         {
             Id = id,
             ShoppingCartId = shoppingCartId,
-            ProductId = productId
+            ProductId = productId,
+            Quantity = quantity
         };
     }
 }

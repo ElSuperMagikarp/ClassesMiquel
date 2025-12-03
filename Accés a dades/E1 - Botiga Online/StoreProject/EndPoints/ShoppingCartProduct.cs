@@ -16,7 +16,8 @@ public static class ShoppingCartProductEndpoints
             {
                 Id = Guid.NewGuid(),
                 ShoppingCartId = req.shoppingCartId,
-                ProductId = req.productId
+                ProductId = req.productId,
+                Quantity = req.quantity
             };
 
             ShoppingCartProductADO.Insert(dbConn, shoppingCartProduct);

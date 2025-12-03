@@ -10,20 +10,21 @@ static class ShoppingCartProductADO
     {
         dbConn.Open();
 
-        string sql = @"INSERT INTO ShoppingCartsProducts (Id, ShoppingCartId, ProductId)
-                        VALUES (@Id, @ShoppingCartId, @ProductId)";
+        string sql = @"INSERT INTO ShoppingCartsProducts (Id, ShoppingCartId, ProductId, Quantity)
+                        VALUES (@Id, @ShoppingCartId, @ProductId, @Quantity)";
 
         using SqlCommand cmd = new SqlCommand(sql, dbConn.sqlConnection);
         cmd.Parameters.AddWithValue("@Id", shoppingCartProduct.Id);
         cmd.Parameters.AddWithValue("@ShoppingCartId", shoppingCartProduct.ShoppingCartId);
         cmd.Parameters.AddWithValue("@ProductId", shoppingCartProduct.ProductId);
+        cmd.Parameters.AddWithValue("@Quantity", shoppingCartProduct.Quantity);
 
         int rows = cmd.ExecuteNonQuery();
         Console.WriteLine($"{rows} fila inserida.");
         dbConn.Close();
     }
 
-    
+
 
     public static bool Delete(DatabaseConnection dbConn, Guid id)
     {

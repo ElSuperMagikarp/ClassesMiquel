@@ -29,7 +29,7 @@
 - [ ] EndPoints
     - [x] Producte
     - [x] Familia Producte
-    - [/] Carrito de compra *(S'ha de moure relació amb producte a ShoppingCartProduct)*
+    - [/] Carrito de compra
         - [ ] carro/{id}/import
         - [ ] QueryString import
     - [ ] Relació Producte-Carrito

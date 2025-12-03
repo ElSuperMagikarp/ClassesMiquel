@@ -26,6 +26,7 @@ CREATE TABLE ShoppingCartsProducts (
     Id UNIQUEIDENTIFIER NOT NULL PRIMARY KEY,
     ShoppingCartId UNIQUEIDENTIFIER NOT NULL,
     ProductId UNIQUEIDENTIFIER NOT NULL,
+    Quantity INT NOT NULL, 
     CONSTRAINT FKShoppingCartsProductsShoppingCarts FOREIGN KEY (ShoppingCartId)
         REFERENCES ShoppingCarts(Id),
     CONSTRAINT FKShoppingCartsProductsProducts FOREIGN KEY (ProductId)
