@@ -21,22 +21,7 @@ public static class ShoppingCartEndpoints
             return Results.Created($"/shoppingCarts/{shoppingCart.Id}", shoppingCart);
         });
 
-        // POST afegir Product a ShoppingCart
-        /*app.MapPost("/shoppingCarts/{id}/add", (Guid id, ShoppingCartProductRequest req) =>
-        {
-            ShoppingCartProduct shoppingCartProduct = new ShoppingCartProduct
-            {
-                Id = Guid.NewGuid(),
-                ShoppingCartId = id,
-                ProductId = req.ProductId
-            };
-
-            ShoppingCartProductADO.Insert(dbConn, shoppingCartProduct);
-
-            return Results.Created($"/shoppingCarts/{id}", shoppingCartProduct);
-        });*/
-
         // DELETE Treure Product de ShoppingCart
-        // app.MapDelete("/shoppingCarts/{id}/remove", (Guid id) => ShoppingCartProductADO.Delete(dbConn, id) ? Results.NoContent() : Results.NotFound());
+        app.MapDelete("/shoppingCarts/{id}", (Guid id) => ShoppingCartProductADO.Delete(dbConn, id) ? Results.NoContent() : Results.NotFound());
     }
 }
