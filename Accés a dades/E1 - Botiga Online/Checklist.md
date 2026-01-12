@@ -25,7 +25,7 @@
     - [x] Producte ADO
     - [x] Familia Producte ADO
     - [x] Carrito de compra ADO
-    - [x] Relació Producte-Carrito ADO
+    - [ ] Relació Producte-Carrito ADO
 - [ ] EndPoints
     - [x] Producte
     - [x] Familia Producte
@@ -37,6 +37,7 @@
     - [ ] Producte
     - [ ] Familia Producte
     - [ ] Carrito de compra
+    - [ ] Relació Producte-Carrito
 - [ ] DTO
     - [ ] Producte Response
     - [ ] Producte Request
@@ -44,6 +45,8 @@
     - [ ] Familia Request
     - [ ] Carrito Response
     - [ ] Carrito Request
+    - [x] Carrito-Producte Response
+    - [x] Carrito-Producte Request
 - [ ] Validators
     - [ ] Producte
     - [ ] Familia Producte
@@ -58,8 +61,7 @@
     - [ ] Afegir versió als Endpoint
 
 ## DUBTES
-- [x] No es pot fer GET dels productes del carrito -> S'hauria de fer, pero no fa falta
-- [x] Preguntar com fer el DELETE de ShoppingCart (EndPoint) -> DELETE /shoppingCartProduct/{id} a Endpoint ShoppingCartProduct
+- [ ] Com saber els Productes que hi han dins de un carrito
 
 
 ## DISCOUNT
