@@ -1,0 +1,19 @@
+using StoreProject.Model;
+
+namespace StoreProject.DTO;
+
+public record ProductRequest(Guid FamilyId, string Code, string Name, decimal Price, decimal Discount)
+{
+    public Product ToProduct(Guid id)
+    {
+        return new Product
+        {
+            Id = id,
+            FamilyId = FamilyId,
+            Code = Code,
+            Name = Name,
+            Price = Price,
+            Discount = Discount
+        };
+    }
+}

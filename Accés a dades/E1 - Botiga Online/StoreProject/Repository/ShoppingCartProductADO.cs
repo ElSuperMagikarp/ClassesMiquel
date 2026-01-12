@@ -24,8 +24,6 @@ static class ShoppingCartProductADO
         dbConn.Close();
     }
 
-
-
     public static bool Delete(DatabaseConnection dbConn, Guid id)
     {
         dbConn.Open();

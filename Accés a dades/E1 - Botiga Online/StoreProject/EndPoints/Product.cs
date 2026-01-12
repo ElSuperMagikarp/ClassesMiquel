@@ -1,6 +1,7 @@
 using StoreProject.Repository;
 using StoreProject.Services;
 using StoreProject.Model;
+using StoreProject.DTO;
 
 namespace StoreProject.EndPoints;
 
@@ -23,14 +24,19 @@ public static class ProductEndpoints
 
             ProductADO.Insert(dbConn, product);
 
-            return Results.Created($"/products/{product.Id}", product);
+            return Results.Created($"/products/{product.Id}", ProductResponse.FromProduct(product));
         });
 
         // GET /products
         app.MapGet("/products", () =>
         {
             List<Product> products = ProductADO.GetAll(dbConn);
-            return Results.Ok(products);
+            List<ProductResponse> productResponses = new List<ProductResponse>();
+            foreach (Product product in products)
+            {
+                productResponses.Add(ProductResponse.FromProduct(product));
+            }
+            return Results.Ok(productResponses);
         });
 
         // GET Product by id
@@ -39,7 +45,7 @@ public static class ProductEndpoints
             Product? product = ProductADO.GetById(dbConn, id);
 
             return product is not null
-                ? Results.Ok(product)
+                ? Results.Ok(ProductResponse.FromProduct(product))
                 : Results.NotFound(new { message = $"Product with Id {id} not found." });
         });
 
@@ -65,12 +71,10 @@ public static class ProductEndpoints
 
             ProductADO.Update(dbConn, productUpdt);
 
-            return Results.Ok(productUpdt);
+            return Results.Ok(ProductResponse.FromProduct(product));
         });
 
         // DELETE Product
         app.MapDelete("/products/{id}", (Guid id) => ProductADO.Delete(dbConn, id) ? Results.NoContent() : Results.NotFound());
     }
 }
-
-public record ProductRequest(Guid FamilyId, string Code, string Name, decimal Price, decimal Discount);  // Com ha de llegir el POST
