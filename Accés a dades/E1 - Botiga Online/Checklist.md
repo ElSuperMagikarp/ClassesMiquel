@@ -1,7 +1,7 @@
 # Store Project
 - [x] SQL
     - [ ] Falta Usuari
-    - [ ] Falta Descompte
+    - [ ] Falta Descompte?
 - [x] Fitxer configuració
 - [x] Fitxer de projecte
 - [x] Programa principal
@@ -39,8 +39,8 @@
     - [ ] Carrito de compra
     - [ ] Relació Producte-Carrito
 - [ ] DTO
-    - [ ] Producte Response
-    - [ ] Producte Request
+    - [x] Producte Response
+    - [x] Producte Request
     - [ ] Familia Response
     - [ ] Familia Request
     - [ ] Carrito Response
@@ -62,7 +62,8 @@
 
 ## DUBTES
 - [ ] Com saber els Productes que hi han dins de un carrito
-
+- [ ] Com treure productes i afegir del carrito (quantitats)
+- [ ] Descompte a Product
 
 ## DISCOUNT
 
