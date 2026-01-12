@@ -1,3 +1,4 @@
+using StoreProject.DTO;
 using StoreProject.Model;
 using StoreProject.Repository;
 using StoreProject.Services;
@@ -19,14 +20,19 @@ public static class ProductFamiliesEndpoints
 
             ProductFamilyADO.Insert(dbConn, productFamily);
 
-            return Results.Created($"/productfamilies/{productFamily.Id}", productFamily);
+            return Results.Created($"/productfamilies/{productFamily.Id}", ProductFamilyResponse.FromProductFamily(productFamily));
         });
 
         // GET /productfamilies
         app.MapGet("/productfamilies", () =>
         {
-            List<ProductFamily> productfamilies = ProductFamilyADO.GetAll(dbConn);
-            return Results.Ok(productfamilies);
+            List<ProductFamily> productFamilies = ProductFamilyADO.GetAll(dbConn);
+            List<ProductFamilyResponse> productFamilyResponses = new List<ProductFamilyResponse>();
+            foreach (ProductFamily productFamily in productFamilies)
+            {
+                productFamilyResponses.Add(ProductFamilyResponse.FromProductFamily(productFamily));
+            }
+            return Results.Ok(productFamilyResponses);
         });
 
         // GET Product Family by id
@@ -35,7 +41,7 @@ public static class ProductFamiliesEndpoints
             ProductFamily? productFamily = ProductFamilyADO.GetById(dbConn, id);
 
             return productFamily is not null
-                ? Results.Ok(productFamily)
+                ? Results.Ok(ProductFamilyResponse.FromProductFamily(productFamily))
                 : Results.NotFound(new { message = $"Product Family with Id {id} not found." });
         });
 
@@ -57,12 +63,10 @@ public static class ProductFamiliesEndpoints
 
             ProductFamilyADO.Update(dbConn, productFamilyUpdt);
 
-            return Results.Ok(productFamilyUpdt);
+            return Results.Ok(ProductFamilyResponse.FromProductFamily(productFamily));
         });
 
         // DELETE Product Family
         app.MapDelete("/productfamilies/{id}", (Guid id) => ProductFamilyADO.Delete(dbConn, id) ? Results.NoContent() : Results.NotFound());
     }
 }
-
-public record ProductFamilyRequest(string Name);  // Com ha de llegir el POST
