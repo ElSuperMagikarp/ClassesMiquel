@@ -1,7 +1,9 @@
+using StoreProject.Common;
 using StoreProject.Repository;
 using StoreProject.Services;
 using StoreProject.Model;
 using StoreProject.DTO;
+using StoreProject.Validators;
 
 namespace StoreProject.EndPoints;
 
@@ -12,6 +14,25 @@ public static class ProductEndpoints
         // POST /products
         app.MapPost("/products", (ProductRequest req) =>
         {
+            Result result = ProductValidator.Validate(req);
+            if (!result.IsOk)
+            {
+                return Results.BadRequest(new
+                {
+                    error = result.ErrorCode,
+                    message = result.ErrorMessage
+                });
+            }
+            Result ADOResult = ProductADOValidator.Validate(req, dbConn);
+            if (!ADOResult.IsOk)
+            {
+                return Results.BadRequest(new
+                {
+                    error = ADOResult.ErrorCode,
+                    message = ADOResult.ErrorMessage
+                });
+            }
+
             Product product = new Product
             {
                 Id = Guid.NewGuid(),
@@ -57,6 +78,25 @@ public static class ProductEndpoints
             if (product == null)
             {
                 return Results.NotFound();
+            }
+
+            Result result = ProductValidator.Validate(req);
+            if (!result.IsOk)
+            {
+                return Results.BadRequest(new
+                {
+                    error = result.ErrorCode,
+                    message = result.ErrorMessage
+                });
+            }
+            Result ADOResult = ProductADOValidator.Validate(req, dbConn);
+            if (!ADOResult.IsOk)
+            {
+                return Results.BadRequest(new
+                {
+                    error = ADOResult.ErrorCode,
+                    message = ADOResult.ErrorMessage
+                });
             }
 
             Product productUpdt = new Product

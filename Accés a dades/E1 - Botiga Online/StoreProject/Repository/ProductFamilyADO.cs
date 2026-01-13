@@ -103,4 +103,19 @@ static class ProductFamilyADO
 
         return rows > 0;
     }
+
+    public static bool ProductFamilyExists(DatabaseConnection dbConn, Guid id)
+    {
+        dbConn.Open();
+        string sql = "SELECT * FROM ProductFamilies WHERE Id = @Id";
+
+        using SqlCommand cmd = new SqlCommand(sql, dbConn.sqlConnection);
+        cmd.Parameters.AddWithValue("@Id", id);
+
+        int rows = cmd.ExecuteNonQuery();
+
+        dbConn.Close();
+
+        return rows > 0;
+    }
 }
