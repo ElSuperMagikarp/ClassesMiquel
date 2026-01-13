@@ -17,11 +17,11 @@
         - [x] Descompte Normal
         - [x] Descompte Premium
 - [ ] Repository
-    - [ ] Producte ADO
-      - [ ] Funcions Validator 
+    - [x] Producte ADO
     - [x] Familia Producte ADO
     - [x] Carrito de compra ADO
     - [ ] Relació Producte-Carrito ADO
+        - [ ] Patch Quantitat
 - [ ] EndPoints
     - [x] Producte
     - [x] Familia Producte
@@ -46,7 +46,7 @@
     - [x] Carrito-Producte Request
 - [ ] Validators
     - [x] Producte
-    - [ ] ProducteADO
+    - [x] ProducteADO
     - [ ] Familia Producte
     - [ ] Carrito de compra
     - [ ] Carrito-Producte
