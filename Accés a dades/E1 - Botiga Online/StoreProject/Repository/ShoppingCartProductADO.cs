@@ -39,4 +39,23 @@ static class ShoppingCartProductADO
 
         return rows > 0;
     }
+
+    public static bool UpdateQuantity(DatabaseConnection dbConn, Guid id, int quantity)
+    {
+        dbConn.Open();
+
+        string sql = @"UPDATE ShoppingCartsProducts
+                   SET Quantity = @Quantity
+                   WHERE Id = @Id";
+
+        using SqlCommand cmd = new SqlCommand(sql, dbConn.sqlConnection);
+        cmd.Parameters.AddWithValue("@Id", id);
+        cmd.Parameters.AddWithValue("@Quantity", quantity);
+
+        int rows = cmd.ExecuteNonQuery();
+
+        dbConn.Close();
+
+        return rows > 0;
+    }
 }
