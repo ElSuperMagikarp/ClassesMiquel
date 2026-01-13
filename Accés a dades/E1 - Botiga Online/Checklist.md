@@ -1,38 +1,35 @@
 # Store Project
 - [x] SQL
-    - [ ] Falta Usuari
-    - [ ] Falta Descompte?
 - [x] Fitxer configuració
 - [x] Fitxer de projecte
 - [x] Programa principal
 - [x] Services
     - [x] Database connection
+- [x] Common
+    - [x] Result
 - [x] Model
     - [x] Producte
     - [x] Familia Producte
     - [x] Carrito de compra
-        - [ ] Afegir Id Usuari
     - [x] Relació Producte-Carrito
-    - [ ] Usuari
-        - [ ] IUsuari
-        - [ ] Usuari Normal
-        - [ ] Usuari Premium
     - [x] Descompte
         - [x] IDescompte
         - [x] Descompte Normal
         - [x] Descompte Premium
 - [ ] Repository
-    - [x] Producte ADO
+    - [ ] Producte ADO
+      - [ ] Funcions Validator 
     - [x] Familia Producte ADO
     - [x] Carrito de compra ADO
     - [ ] Relació Producte-Carrito ADO
 - [ ] EndPoints
     - [x] Producte
     - [x] Familia Producte
-    - [/] Carrito de compra
+    - [ ] Carrito de compra
         - [ ] carro/{id}/import
         - [ ] QueryString import
     - [ ] Relació Producte-Carrito
+        - [ ] Patch Quantitat
 - [ ] Peticións Postman
     - [ ] Producte
     - [ ] Familia Producte
@@ -41,29 +38,27 @@
 - [ ] DTO
     - [x] Producte Response
     - [x] Producte Request
-    - [ ] Familia Response
-    - [ ] Familia Request
+    - [x] Familia Response
+    - [x] Familia Request
     - [ ] Carrito Response
     - [ ] Carrito Request
     - [x] Carrito-Producte Response
     - [x] Carrito-Producte Request
 - [ ] Validators
-    - [ ] Producte
+    - [x] Producte
+    - [ ] ProducteADO
     - [ ] Familia Producte
     - [ ] Carrito de compra
+    - [ ] Carrito-Producte
 - [ ] Factories
     - [ ] Descompte
 - [ ] **ALTRES**
     - [ ] Canviar EndPoints a una classe central (per fer MapEndpoints)
-    - [ ] Common
-        - [ ] Result
     - [ ] Posar rols
     - [ ] Afegir versió als Endpoint
 
 ## DUBTES
-- [ ] Com saber els Productes que hi han dins de un carrito
-- [ ] Com treure productes i afegir del carrito (quantitats)
-- [ ] Descompte a Product
+
 
 ## DISCOUNT
 

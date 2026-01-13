@@ -23,5 +23,7 @@ public static class ShoppingCartEndpoints
 
         // DELETE Treure Product de ShoppingCart
         app.MapDelete("/shoppingCarts/{id}", (Guid id) => ShoppingCartProductADO.Delete(dbConn, id) ? Results.NoContent() : Results.NotFound());
+
+        // shoppingCarts/{id}/import
     }
 }
