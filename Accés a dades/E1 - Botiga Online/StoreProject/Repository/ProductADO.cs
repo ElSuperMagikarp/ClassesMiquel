@@ -124,4 +124,34 @@ static class ProductADO
 
         return rows > 0;
     }
+
+    public static bool CodeExists(DatabaseConnection dbConn, string code)
+    {
+        dbConn.Open();
+        string sql = "SELECT COUNT(*) FROM Products WHERE Code = @Code";
+
+        using SqlCommand cmd = new SqlCommand(sql, dbConn.sqlConnection);
+        cmd.Parameters.AddWithValue("@Code", code);
+
+        int count = (int)cmd.ExecuteScalar();
+
+        dbConn.Close();
+
+        return count > 0;
+    }
+
+    public static bool NameExists(DatabaseConnection dbConn, string name)
+    {
+        dbConn.Open();
+        string sql = "SELECT COUNT(*) FROM Products WHERE Name = @Name";
+
+        using SqlCommand cmd = new SqlCommand(sql, dbConn.sqlConnection);
+        cmd.Parameters.AddWithValue("@Name", name);
+
+        int count = (int)cmd.ExecuteScalar();
+
+        dbConn.Close();
+
+        return count > 0;
+    }
 }
