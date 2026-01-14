@@ -22,6 +22,34 @@ static class ShoppingCartADO
         dbConn.Close();
     }
 
+    public static List<ShoppingCartProduct> GetShoppingCartProducts(DatabaseConnection dbConn, Guid shoppingCartId)
+    {
+        List<ShoppingCartProduct> shoppingCartProducts = new();
+
+        dbConn.Open();
+        string sql = @"SELECT Id, ShoppingCartId, ProductId, Quantity FROM ShoppingCartsProducts
+                        WHERE ShoppingCartId = @ShoppingCartId";
+
+        using SqlCommand cmd = new SqlCommand(sql, dbConn.sqlConnection);
+        cmd.Parameters.AddWithValue("@ShoppingCartId", shoppingCartId);
+
+        using SqlDataReader reader = cmd.ExecuteReader();
+
+        while (reader.Read())
+        {
+            shoppingCartProducts.Add(new ShoppingCartProduct
+            {
+                Id = reader.GetGuid(0),
+                ShoppingCartId = reader.GetGuid(1),
+                ProductId = reader.GetGuid(2),
+                Quantity = reader.GetInt32(3)
+            });
+        }
+
+        dbConn.Close();
+        return shoppingCartProducts;
+    }
+
     public static bool Delete(DatabaseConnection dbConn, Guid id)
     {
         dbConn.Open();
