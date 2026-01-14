@@ -22,12 +22,14 @@ static class ShoppingCartADO
         dbConn.Close();
     }
 
-    public static List<ShoppingCartProduct> GetShoppingCartProducts(DatabaseConnection dbConn, Guid shoppingCartId)
+    public static List<Classes.ShoppingCartProduct> GetShoppingCartProducts(DatabaseConnection dbConn, Guid shoppingCartId)
     {
-        List<ShoppingCartProduct> shoppingCartProducts = new();
+        List<Classes.ShoppingCartProduct> shoppingCartProducts = new();
 
         dbConn.Open();
-        string sql = @"SELECT Id, ShoppingCartId, ProductId, Quantity FROM ShoppingCartsProducts
+        string sql = @"SELECT scp.Id, scp.ShoppingCartId, scp.ProductId, Quantity, p.Price, p.Discount
+                        FROM ShoppingCartsProducts scp 
+                        INNER JOIN Products p ON p.Id = scp.ProductId
                         WHERE ShoppingCartId = @ShoppingCartId";
 
         using SqlCommand cmd = new SqlCommand(sql, dbConn.sqlConnection);
@@ -37,12 +39,14 @@ static class ShoppingCartADO
 
         while (reader.Read())
         {
-            shoppingCartProducts.Add(new ShoppingCartProduct
+            shoppingCartProducts.Add(new Classes.ShoppingCartProduct
             {
                 Id = reader.GetGuid(0),
                 ShoppingCartId = reader.GetGuid(1),
                 ProductId = reader.GetGuid(2),
-                Quantity = reader.GetInt32(3)
+                Quantity = reader.GetInt32(3),
+                Price = reader.GetDecimal(4),
+                Discount = reader.GetDecimal(5)
             });
         }
 
