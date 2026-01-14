@@ -25,9 +25,7 @@
 - [ ] EndPoints
     - [x] Producte
     - [x] Familia Producte
-    - [ ] Carrito de compra
-        - [ ] carro/{id}/import
-        - [ ] QueryString import
+    - [x] Carrito de compra
     - [ ] Relació Producte-Carrito
         - [ ] Patch Quantitat
 - [ ] Peticións Postman
@@ -50,8 +48,8 @@
     - [ ] Familia Producte
     - [ ] Carrito de compra
     - [ ] Carrito-Producte
-- [ ] Factories
-    - [ ] Descompte
+- [x] Factories
+    - [x] Descompte
 - [ ] **ALTRES**
     - [ ] Canviar EndPoints a una classe central (per fer MapEndpoints)
     - [ ] Posar rols
