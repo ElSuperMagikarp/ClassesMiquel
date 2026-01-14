@@ -112,10 +112,10 @@ static class ProductFamilyADO
         using SqlCommand cmd = new SqlCommand(sql, dbConn.sqlConnection);
         cmd.Parameters.AddWithValue("@Id", id);
 
-        int rows = cmd.ExecuteNonQuery();
+        int count = (int)cmd.ExecuteScalar();
 
         dbConn.Close();
 
-        return rows > 0;
+        return count > 0;
     }
 }
