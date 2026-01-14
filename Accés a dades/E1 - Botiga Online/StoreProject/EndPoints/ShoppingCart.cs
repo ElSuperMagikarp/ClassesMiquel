@@ -2,6 +2,8 @@ using StoreProject.Repository;
 using StoreProject.Services;
 using StoreProject.Model;
 using StoreProject.Helpers;
+using StoreProject.Classes.Interfaces;
+using StoreProject.Classes.Factories;
 
 namespace StoreProject.EndPoints;
 
@@ -26,11 +28,23 @@ public static class ShoppingCartEndpoints
         app.MapDelete("/shoppingCarts/{id}", (Guid id) => ShoppingCartProductADO.Delete(dbConn, id) ? Results.NoContent() : Results.NotFound());
 
         // GET IMPORT
-        app.MapGet("shoppingCarts/{id}/import", (Guid id) =>
+        app.MapGet("shoppingCarts/{id}/import", (Guid id, string DiscountType = "regular") =>
         {
             List<Classes.ShoppingCartProduct> shoppingCartProducts = ShoppingCartADO.GetShoppingCartProducts(dbConn, id);
 
-            decimal import = ShoppingCartCalculations.CalculateImport(shoppingCartProducts);
+            decimal baseImport = ShoppingCartCalculations.CalculateImport(shoppingCartProducts);
+
+            IDiscountFactory factory = DiscountType switch
+            {
+                "regular" => new RegularDiscountFactory(),
+                "premium" => new PremiumDiscountFactory(),
+                _ => throw new ArgumentException("Tipus de descompte desconegut.")
+            };
+            IDiscount discountCalculator = factory.CreateDiscount();
+
+            decimal discount = discountCalculator.calculateDiscount(baseImport) / 100;
+
+            decimal import = baseImport * (1 - discount);
 
             return Results.Ok(new { import });
         });

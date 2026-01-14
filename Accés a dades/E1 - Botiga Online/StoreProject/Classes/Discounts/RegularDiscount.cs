@@ -4,18 +4,18 @@ namespace StoreProject.Classes.Discounts;
 
 public class RegularDiscount : IDiscount
 {
-    public float calculateDiscount(double import)
+    public decimal calculateDiscount(decimal import)
     {
-        float descompte = 0;
+        decimal descompte = 0;
 
         if (import > 7000)
         {
-            descompte = 0.15f;
+            descompte = 15;
             return descompte;
         }
         else if (import > 3000)
         {
-            descompte = 0.1f;
+            descompte = 10;
             return descompte;
         }
 

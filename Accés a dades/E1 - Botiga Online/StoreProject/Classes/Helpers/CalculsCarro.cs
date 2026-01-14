@@ -11,7 +11,7 @@ static class ShoppingCartCalculations
         foreach (ShoppingCartProduct shoppingCartProduct in shoppingCartProducts)
         {
             decimal productDiscount = shoppingCartProduct.Discount / 100;
-            import += shoppingCartProduct.Price * productDiscount * shoppingCartProduct.Quantity;
+            import += shoppingCartProduct.Price * (1 - productDiscount) * shoppingCartProduct.Quantity;
         }
 
         return import;

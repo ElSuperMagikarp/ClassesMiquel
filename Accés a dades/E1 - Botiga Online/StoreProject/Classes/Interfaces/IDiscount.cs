@@ -2,5 +2,5 @@ namespace StoreProject.Classes.Interfaces;
 
 public interface IDiscount
 {
-    float calculateDiscount(double import);
+    decimal calculateDiscount(decimal import);
 }

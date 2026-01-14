@@ -4,13 +4,13 @@ namespace StoreProject.Classes.Discounts;
 
 public class PremiumDiscount : IDiscount
 {
-    public float calculateDiscount(double import)
+    public decimal calculateDiscount(decimal import)
     {
-        float descompte = 0.1f;
+        decimal descompte = 10;
 
         if (import > 1000)
         {
-            descompte = 0.08f;
+            descompte = 15;
             return descompte;
         }
 
