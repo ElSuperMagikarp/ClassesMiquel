@@ -4,7 +4,7 @@ namespace StoreProject.Classes.Discounts;
 
 public class RegularDiscount : IDiscount
 {
-    public float calcularDte(double import)
+    public float calculateDiscount(double import)
     {
         float descompte = 0;
 

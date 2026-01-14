@@ -4,7 +4,7 @@ namespace StoreProject.Classes.Discounts;
 
 public class PremiumDiscount : IDiscount
 {
-    public float calcularDte(double import)
+    public float calculateDiscount(double import)
     {
         float descompte = 0.1f;
 

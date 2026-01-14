@@ -30,7 +30,7 @@ public static class ShoppingCartEndpoints
         {
             List<Classes.ShoppingCartProduct> shoppingCartProducts = ShoppingCartADO.GetShoppingCartProducts(dbConn, id);
 
-            decimal import = CalculsCarro.CalculImport(shoppingCartProducts);
+            decimal import = ShoppingCartCalculations.CalculateImport(shoppingCartProducts);
 
             return Results.Ok(new { import });
         });

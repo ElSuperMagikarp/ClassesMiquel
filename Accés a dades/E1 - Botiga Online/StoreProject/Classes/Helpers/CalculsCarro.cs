@@ -2,9 +2,9 @@ using StoreProject.Classes;
 
 namespace StoreProject.Helpers;
 
-static class CalculsCarro
+static class ShoppingCartCalculations
 {
-    public static decimal CalculImport(List<ShoppingCartProduct> shoppingCartProducts)
+    public static decimal CalculateImport(List<ShoppingCartProduct> shoppingCartProducts)
     {
         decimal import = 0;
 
