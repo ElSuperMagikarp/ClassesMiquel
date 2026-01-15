@@ -28,13 +28,13 @@ public static class ShoppingCartEndpoints
         app.MapDelete("/shoppingCarts/{id}", (Guid id) => ShoppingCartProductADO.Delete(dbConn, id) ? Results.NoContent() : Results.NotFound());
 
         // GET IMPORT
-        app.MapGet("shoppingCarts/{id}/import", (Guid id, string DiscountType = "regular") =>
+        app.MapGet("shoppingCarts/{id}/import", (Guid id, string discountType = "regular") =>
         {
             List<Classes.ShoppingCartProduct> shoppingCartProducts = ShoppingCartADO.GetShoppingCartProducts(dbConn, id);
 
             decimal baseImport = ShoppingCartCalculations.CalculateImport(shoppingCartProducts);
 
-            IDiscountFactory factory = DiscountType switch
+            IDiscountFactory factory = discountType switch
             {
                 "regular" => new RegularDiscountFactory(),
                 "premium" => new PremiumDiscountFactory(),
