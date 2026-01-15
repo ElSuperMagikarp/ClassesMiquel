@@ -107,7 +107,7 @@ static class ProductFamilyADO
     public static bool ProductFamilyExists(DatabaseConnection dbConn, Guid id)
     {
         dbConn.Open();
-        string sql = "SELECT * FROM ProductFamilies WHERE Id = @Id";
+        string sql = "SELECT COUNT(1) FROM ProductFamilies WHERE Id = @Id";
 
         using SqlCommand cmd = new SqlCommand(sql, dbConn.sqlConnection);
         cmd.Parameters.AddWithValue("@Id", id);
