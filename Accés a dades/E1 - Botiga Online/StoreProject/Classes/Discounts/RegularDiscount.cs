@@ -8,14 +8,9 @@ public class RegularDiscount : IDiscount
     {
         decimal descompte = 0;
 
-        if (import > 7000)
+        if (import >= 40)
         {
-            descompte = 15;
-            return descompte;
-        }
-        else if (import > 3000)
-        {
-            descompte = 10;
+            descompte = 25;
             return descompte;
         }
 

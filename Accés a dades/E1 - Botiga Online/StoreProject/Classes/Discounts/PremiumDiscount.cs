@@ -6,11 +6,11 @@ public class PremiumDiscount : IDiscount
 {
     public decimal calculateDiscount(decimal import)
     {
-        decimal descompte = 10;
+        decimal descompte = 25;
 
-        if (import > 1000)
+        if (import >= 40)
         {
-            descompte = 15;
+            descompte = 50;
             return descompte;
         }
 
