@@ -7,9 +7,9 @@
 - [X] Model -> Infraestructure/Persistence/Entitites
 - [X] Repository -> Infraestructure/Persistance/Repositories
 - [X] Services -> Infraestructure/Services
-- [ ] Validators
-  - [ ] ValidatorsNormals -> Domain/Validators
-  - [ ] ValidadorsADO -> Infraestructure/Validators
+- [X] Validators
+  - [X] ValidatorsNormals -> Domain/Validators
+  - [X] ValidadorsADO -> Infraestructure/Validators
 
 ## Coses noves
 - [ ] Endpoint Compra

@@ -3,7 +3,8 @@ using StoreProject.Infraestructure.Persistance.Repository;
 using StoreProject.Infraestructure.Services;
 using StoreProject.Infraestructure.Persistance.Entities;
 using StoreProject.Infraestructure.DTO;
-using StoreProject.Validators;
+using StoreProject.Infraestructure.Validators;
+using StoreProject.Domain.Validators;
 
 namespace StoreProject.Application.EndPoints;
 
