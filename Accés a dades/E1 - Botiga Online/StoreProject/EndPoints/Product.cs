@@ -1,4 +1,4 @@
-using StoreProject.Common;
+using StoreProject.Infraestructure.Common;
 using StoreProject.Repository;
 using StoreProject.Services;
 using StoreProject.Model;

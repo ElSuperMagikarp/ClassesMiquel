@@ -1,6 +1,6 @@
 namespace StoreProject.Validators;
 
-using StoreProject.Common;
+using StoreProject.Infraestructure.Common;
 using StoreProject.DTO;
 
 public static class ProductValidator

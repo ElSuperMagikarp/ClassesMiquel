@@ -1,4 +1,4 @@
-namespace StoreProject.Common;
+namespace StoreProject.Infraestructure.Common;
 
 public class Result
 {
