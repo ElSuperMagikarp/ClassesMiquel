@@ -3,7 +3,7 @@ using StoreProject.Model;
 using StoreProject.Repository;
 using StoreProject.Services;
 
-namespace StoreProject.EndPoints;
+namespace StoreProject.Application.EndPoints;
 
 public static class ProductFamiliesEndpoints
 {

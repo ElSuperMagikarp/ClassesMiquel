@@ -3,7 +3,7 @@
   - [X] Classes Domain (ara mateix cap) -> Domain/Classes
 - [X] Common -> Infraestructure/Common
 - [X] DTO -> Infrastructure/DTO
-- [ ] EndPoints -> Application/Endpoints
+- [X] EndPoints -> Application/Endpoints
 - [ ] Model -> Infraestructure/Persistence/Entitites
 - [ ] Repository -> Infraestructure/Persistance/Repositories
 - [ ] Services -> Infraestructure/Services

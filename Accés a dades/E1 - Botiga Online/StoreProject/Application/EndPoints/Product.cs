@@ -5,7 +5,7 @@ using StoreProject.Model;
 using StoreProject.Infraestructure.DTO;
 using StoreProject.Validators;
 
-namespace StoreProject.EndPoints;
+namespace StoreProject.Application.EndPoints;
 
 public static class ProductEndpoints
 {

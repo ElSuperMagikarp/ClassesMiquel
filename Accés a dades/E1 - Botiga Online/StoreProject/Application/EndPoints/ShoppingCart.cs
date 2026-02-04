@@ -5,7 +5,7 @@ using StoreProject.Helpers;
 using StoreProject.Infraestructure.Classes.Interfaces;
 using StoreProject.Infraestructure.Classes.Factories;
 
-namespace StoreProject.EndPoints;
+namespace StoreProject.Application.EndPoints;
 
 public static class ShoppingCartEndpoints
 {

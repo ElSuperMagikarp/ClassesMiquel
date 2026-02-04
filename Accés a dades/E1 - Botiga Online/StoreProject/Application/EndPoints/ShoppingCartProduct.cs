@@ -3,7 +3,7 @@ using StoreProject.Services;
 using StoreProject.Model;
 using StoreProject.Infraestructure.DTO;
 
-namespace StoreProject.EndPoints;
+namespace StoreProject.Application.EndPoints;
 
 public static class ShoppingCartProductEndpoints
 {
