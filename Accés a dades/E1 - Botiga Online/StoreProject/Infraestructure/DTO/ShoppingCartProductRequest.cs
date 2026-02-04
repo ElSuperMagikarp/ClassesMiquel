@@ -1,6 +1,6 @@
 using StoreProject.Model;
 
-namespace StoreProject.DTO;
+namespace StoreProject.Infraestructure.DTO;
 
 public record ShoppingCartProductRequest(Guid shoppingCartId, Guid productId, int quantity)
 {

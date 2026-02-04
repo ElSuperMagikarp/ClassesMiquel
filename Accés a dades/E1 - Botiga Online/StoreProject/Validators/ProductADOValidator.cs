@@ -1,7 +1,7 @@
 namespace StoreProject.Validators;
 
 using StoreProject.Infraestructure.Common;
-using StoreProject.DTO;
+using StoreProject.Infraestructure.DTO;
 using StoreProject.Repository;
 using StoreProject.Services;
 

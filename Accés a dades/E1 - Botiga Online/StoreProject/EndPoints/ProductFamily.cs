@@ -1,4 +1,4 @@
-using StoreProject.DTO;
+using StoreProject.Infraestructure.DTO;
 using StoreProject.Model;
 using StoreProject.Repository;
 using StoreProject.Services;

@@ -1,6 +1,6 @@
 using StoreProject.Model;
 
-namespace StoreProject.DTO;
+namespace StoreProject.Infraestructure.DTO;
 
 public record ProductRequest(Guid FamilyId, string Code, string Name, decimal Price, decimal Discount)
 {

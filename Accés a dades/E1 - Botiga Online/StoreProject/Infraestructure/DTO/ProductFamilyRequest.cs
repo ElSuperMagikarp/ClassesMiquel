@@ -1,6 +1,6 @@
 using StoreProject.Model;
 
-namespace StoreProject.DTO;
+namespace StoreProject.Infraestructure.DTO;
 
 public record ProductFamilyRequest(string Name)
 {

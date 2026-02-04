@@ -1,7 +1,7 @@
 using StoreProject.Repository;
 using StoreProject.Services;
 using StoreProject.Model;
-using StoreProject.DTO;
+using StoreProject.Infraestructure.DTO;
 
 namespace StoreProject.EndPoints;
 
