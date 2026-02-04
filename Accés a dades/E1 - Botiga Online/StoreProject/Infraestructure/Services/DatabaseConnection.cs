@@ -1,6 +1,4 @@
 using Microsoft.Data.SqlClient;
-using static System.Console;
-using StoreProject.Infraestructure.Persistance.Entities;
 
 namespace StoreProject.Infraestructure.Services;
 
@@ -23,6 +21,7 @@ public class DatabaseConnection
         }
         catch (Exception ex)
         {
+            Console.WriteLine($"Error connecting to database: {ex.Message}");
             return false;
         }
     }
