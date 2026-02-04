@@ -2,7 +2,7 @@ using Microsoft.Data.SqlClient;
 using static System.Console;
 using StoreProject.Infraestructure.Persistance.Entities;
 
-namespace StoreProject.Services;
+namespace StoreProject.Infraestructure.Services;
 
 public class DatabaseConnection
 {

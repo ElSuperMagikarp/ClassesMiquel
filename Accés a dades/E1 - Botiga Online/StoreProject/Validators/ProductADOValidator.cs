@@ -3,7 +3,7 @@ namespace StoreProject.Validators;
 using StoreProject.Infraestructure.Common;
 using StoreProject.Infraestructure.DTO;
 using StoreProject.Infraestructure.Persistance.Repository;
-using StoreProject.Services;
+using StoreProject.Infraestructure.Services;
 
 public static class ProductADOValidator
 {

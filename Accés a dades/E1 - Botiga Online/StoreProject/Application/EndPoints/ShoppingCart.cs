@@ -1,5 +1,5 @@
 using StoreProject.Infraestructure.Persistance.Repository;
-using StoreProject.Services;
+using StoreProject.Infraestructure.Services;
 using StoreProject.Infraestructure.Persistance.Entities;
 using StoreProject.Helpers;
 using StoreProject.Infraestructure.Classes.Interfaces;

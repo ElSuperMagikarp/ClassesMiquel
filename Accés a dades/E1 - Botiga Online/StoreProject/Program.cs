@@ -1,5 +1,5 @@
 ﻿using Microsoft.Extensions.Configuration;
-using StoreProject.Services;
+using StoreProject.Infraestructure.Services;
 using StoreProject.Application.EndPoints;
 
 WebApplicationBuilder builder = WebApplication.CreateBuilder(args);

@@ -1,7 +1,7 @@
 using Microsoft.Data.SqlClient;
 
 using StoreProject.Infraestructure.Persistance.Entities;
-using StoreProject.Services;
+using StoreProject.Infraestructure.Services;
 
 namespace StoreProject.Infraestructure.Persistance.Repository;
 
