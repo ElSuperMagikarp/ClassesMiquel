@@ -1,4 +1,4 @@
-using StoreProject.Classes;
+using StoreProject.Infraestructure.Classes;
 
 namespace StoreProject.Helpers;
 

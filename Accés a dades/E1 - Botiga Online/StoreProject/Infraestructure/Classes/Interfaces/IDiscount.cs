@@ -1,4 +1,4 @@
-namespace StoreProject.Classes.Interfaces;
+namespace StoreProject.Infraestructure.Classes.Interfaces;
 
 public interface IDiscount
 {

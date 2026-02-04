@@ -1,4 +1,4 @@
-namespace StoreProject.Classes;
+namespace StoreProject.Infraestructure.Classes;
 
 public class ShoppingCartProduct
 {

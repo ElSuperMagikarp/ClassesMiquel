@@ -2,8 +2,8 @@ using StoreProject.Repository;
 using StoreProject.Services;
 using StoreProject.Model;
 using StoreProject.Helpers;
-using StoreProject.Classes.Interfaces;
-using StoreProject.Classes.Factories;
+using StoreProject.Infraestructure.Classes.Interfaces;
+using StoreProject.Infraestructure.Classes.Factories;
 
 namespace StoreProject.EndPoints;
 
@@ -24,13 +24,13 @@ public static class ShoppingCartEndpoints
             return Results.Created($"/shoppingCarts/{shoppingCart.Id}", shoppingCart);
         });
 
-        // DELETE Treure Product de ShoppingCart
-        app.MapDelete("/shoppingCarts/{id}", (Guid id) => ShoppingCartProductADO.Delete(dbConn, id) ? Results.NoContent() : Results.NotFound());
+        // DELETE ShoppingCart
+        app.MapDelete("/shoppingCarts/{id}", (Guid id) => ShoppingCartADO.Delete(dbConn, id) ? Results.NoContent() : Results.NotFound());
 
         // GET IMPORT
         app.MapGet("shoppingCarts/{id}/import", (Guid id, string discountType = "regular") =>
         {
-            List<Classes.ShoppingCartProduct> shoppingCartProducts = ShoppingCartADO.GetShoppingCartProducts(dbConn, id);
+            List<Infraestructure.Classes.ShoppingCartProduct> shoppingCartProducts = ShoppingCartADO.GetShoppingCartProducts(dbConn, id);
 
             decimal baseImport = ShoppingCartCalculations.CalculateImport(shoppingCartProducts);
 

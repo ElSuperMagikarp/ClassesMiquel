@@ -1,6 +1,6 @@
-using StoreProject.Classes.Interfaces;
+using StoreProject.Infraestructure.Classes.Interfaces;
 
-namespace StoreProject.Classes.Discounts;
+namespace StoreProject.Infraestructure.Classes.Discounts;
 
 public class RegularDiscount : IDiscount
 {

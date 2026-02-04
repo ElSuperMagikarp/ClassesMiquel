@@ -22,9 +22,9 @@ static class ShoppingCartADO
         dbConn.Close();
     }
 
-    public static List<Classes.ShoppingCartProduct> GetShoppingCartProducts(DatabaseConnection dbConn, Guid shoppingCartId)
+    public static List<Infraestructure.Classes.ShoppingCartProduct> GetShoppingCartProducts(DatabaseConnection dbConn, Guid shoppingCartId)
     {
-        List<Classes.ShoppingCartProduct> shoppingCartProducts = new();
+        List<Infraestructure.Classes.ShoppingCartProduct> shoppingCartProducts = new();
 
         dbConn.Open();
         string sql = @"SELECT scp.Id, scp.ShoppingCartId, scp.ProductId, Quantity, p.Price, p.Discount
@@ -39,7 +39,7 @@ static class ShoppingCartADO
 
         while (reader.Read())
         {
-            shoppingCartProducts.Add(new Classes.ShoppingCartProduct
+            shoppingCartProducts.Add(new Infraestructure.Classes.ShoppingCartProduct
             {
                 Id = reader.GetGuid(0),
                 ShoppingCartId = reader.GetGuid(1),
