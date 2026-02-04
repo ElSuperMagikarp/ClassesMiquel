@@ -1,5 +1,5 @@
 using StoreProject.Infraestructure.DTO;
-using StoreProject.Model;
+using StoreProject.Infraestructure.Persistance.Entities;
 using StoreProject.Repository;
 using StoreProject.Services;
 

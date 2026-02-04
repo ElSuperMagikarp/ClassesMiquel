@@ -1,6 +1,6 @@
 using StoreProject.Repository;
 using StoreProject.Services;
-using StoreProject.Model;
+using StoreProject.Infraestructure.Persistance.Entities;
 using StoreProject.Helpers;
 using StoreProject.Infraestructure.Classes.Interfaces;
 using StoreProject.Infraestructure.Classes.Factories;

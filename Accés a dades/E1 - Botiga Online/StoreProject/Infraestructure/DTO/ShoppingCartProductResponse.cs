@@ -1,4 +1,4 @@
-using StoreProject.Model;
+using StoreProject.Infraestructure.Persistance.Entities;
 
 namespace StoreProject.Infraestructure.DTO;
 

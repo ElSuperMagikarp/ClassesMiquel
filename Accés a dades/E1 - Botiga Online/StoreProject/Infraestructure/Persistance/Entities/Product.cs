@@ -1,4 +1,4 @@
-namespace StoreProject.Model;
+namespace StoreProject.Infraestructure.Persistance.Entities;
 
 public class Product
 {

@@ -1,6 +1,6 @@
 using Microsoft.Data.SqlClient;
 using static System.Console;
-using StoreProject.Model;
+using StoreProject.Infraestructure.Persistance.Entities;
 
 namespace StoreProject.Services;
 

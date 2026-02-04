@@ -1,6 +1,6 @@
 using StoreProject.Repository;
 using StoreProject.Services;
-using StoreProject.Model;
+using StoreProject.Infraestructure.Persistance.Entities;
 using StoreProject.Infraestructure.DTO;
 
 namespace StoreProject.Application.EndPoints;
