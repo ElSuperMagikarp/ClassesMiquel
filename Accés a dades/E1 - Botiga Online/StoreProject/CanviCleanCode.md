@@ -4,7 +4,7 @@
 - [X] Common -> Infraestructure/Common
 - [X] DTO -> Infrastructure/DTO
 - [X] EndPoints -> Application/Endpoints
-- [ ] Model -> Infraestructure/Persistence/Entitites
+- [X] Model -> Infraestructure/Persistence/Entitites
 - [ ] Repository -> Infraestructure/Persistance/Repositories
 - [ ] Services -> Infraestructure/Services
 - [ ] Validators
