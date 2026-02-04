@@ -5,7 +5,7 @@
 - [X] DTO -> Infrastructure/DTO
 - [X] EndPoints -> Application/Endpoints
 - [X] Model -> Infraestructure/Persistence/Entitites
-- [ ] Repository -> Infraestructure/Persistance/Repositories
+- [X] Repository -> Infraestructure/Persistance/Repositories
 - [ ] Services -> Infraestructure/Services
 - [ ] Validators
   - [ ] ValidatorsNormals -> Domain/Validators

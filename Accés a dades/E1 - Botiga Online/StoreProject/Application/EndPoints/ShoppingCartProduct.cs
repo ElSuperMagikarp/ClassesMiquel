@@ -1,4 +1,4 @@
-using StoreProject.Repository;
+using StoreProject.Infraestructure.Persistance.Repository;
 using StoreProject.Services;
 using StoreProject.Infraestructure.Persistance.Entities;
 using StoreProject.Infraestructure.DTO;

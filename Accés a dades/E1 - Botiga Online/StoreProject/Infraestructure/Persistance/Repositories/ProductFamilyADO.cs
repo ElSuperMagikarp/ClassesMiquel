@@ -2,7 +2,7 @@ using Microsoft.Data.SqlClient;
 using StoreProject.Infraestructure.Persistance.Entities;
 using StoreProject.Services;
 
-namespace StoreProject.Repository;
+namespace StoreProject.Infraestructure.Persistance.Repository;
 
 static class ProductFamilyADO
 {
