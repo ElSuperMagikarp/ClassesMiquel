@@ -1,0 +1,149 @@
+using StoreProject.Validators;
+using StoreProject.Infraestructure.DTO;
+using StoreProject.Infraestructure.Persistance.Repository;
+using StoreProject.Infraestructure.Persistance.Entities;
+using StoreProject.Infraestructure.Services;
+using StoreProject.Infraestructure.Utils;
+using StoreProject.Infraestructure.Common;
+
+namespace StoreProject.Application.EndPoints;
+
+public static class UserEndpoints
+{
+    public static void MapUserEndpoints(this WebApplication app, DatabaseConnection dbConn)
+    {
+        // POST /users
+        app.MapPost("/users", (UserRequest req) =>
+        {
+            Guid id;
+            Result result = UserValidator.Validate(req);
+            if (!result.IsOk)
+            {
+                return Results.BadRequest(new
+                {
+                    error = result.ErrorCode,
+                    message = result.ErrorMessage
+                });
+            }
+
+            Result duplicateCheck = UserADOValidator.Validate(req, dbConn);
+            if (!duplicateCheck.IsOk)
+            {
+                return Results.BadRequest(new
+                {
+                    error = duplicateCheck.ErrorCode,
+                    message = duplicateCheck.ErrorMessage
+                });
+            }
+
+            id = Guid.NewGuid();
+            string salt = Hash.GenerateSalt();
+            string hash = Hash.ComputeHash(req.Password, salt);
+
+            User user = new User
+            {
+                Id = id,
+                Username = req.Username,
+                Email = req.Email,
+                Password = hash,
+                Salt = salt
+            };
+
+            UserADO.Insert(dbConn, user);
+            return Results.Created($"/users/{user.Id}", UserResponse.FromUser(user));
+
+        });
+
+        // GET /users
+        app.MapGet("/users", () =>
+        {
+            List<User> users = UserADO.GetAll(dbConn);
+            List<UserResponse> userResponses = new List<UserResponse>();
+            foreach (User user in users)
+            {
+                userResponses.Add(UserResponse.FromUser(user));
+            }
+            return Results.Ok(userResponses);
+        });
+
+        // GET /users User by id
+        app.MapGet("/users/{id}", (Guid id) =>
+        {
+            User? user = UserADO.GetById(dbConn, id);
+
+            return user is not null
+                ? Results.Ok(UserResponse.FromUser(user))
+                : Results.NotFound(new { message = $"User with Id {id} not found." });
+        });
+
+        // PUT /users by id
+        app.MapPut("/users/{id}", (Guid id, UserRequest req) =>
+        {
+            User? existing = UserADO.GetById(dbConn, id);
+
+            if (existing == null)
+            {
+                return Results.NotFound();
+            }
+
+            Result result = UserValidator.Validate(req);
+            if (!result.IsOk)
+            {
+                return Results.BadRequest(new
+                {
+                    error = result.ErrorCode,
+                    message = result.ErrorMessage
+                });
+            }
+
+            Result duplicateCheck = UserADOValidator.Validate(req, dbConn);
+            if (!duplicateCheck.IsOk)
+            {
+                return Results.BadRequest(new
+                {
+                    error = duplicateCheck.ErrorCode,
+                    message = duplicateCheck.ErrorMessage
+                });
+            }
+
+            string salt = Hash.GenerateSalt();
+            string hash = Hash.ComputeHash(req.Password, salt);
+
+            User updated = new User
+            {
+                Id = id,
+                Username = req.Username,
+                Email = req.Email,
+                Password = hash,
+                Salt = salt
+            };
+
+            UserADO.Update(dbConn, updated);
+
+            return Results.Ok(UserResponse.FromUser(updated));
+        });
+
+
+        // DELETE /users/{id}
+        app.MapDelete("/users/{id}", (Guid id) => UserADO.Delete(dbConn, id) ? Results.NoContent() : Results.NotFound());
+
+        // --------- ROLES ---------
+
+        // POST /users/{userId}/role/{roleId}
+        // app.MapPost("/users/{userId}/role/{roleId}", (Guid userId, Guid roleId) =>
+        // {
+        //     UserRole userRole = new UserRole
+        //     {
+        //         Id = Guid.NewGuid(),
+        //         UserId = userId,
+        //         RoleId = roleId
+        //     };
+        //     UserRoleADO.Insert(dbConn, userRole);
+        //     return Results.Created($"/users/{userRole.Id}", userRole);
+        // });
+
+        // DELETE /users/{userId}/role/{roleId}
+        // app.MapDelete("/users/{userId}/role/{roleId}", (Guid userId, Guid roleId) => UserRoleADO.Delete(dbConn, userId, roleId) ? Results.NoContent() : Results.NotFound());
+    }
+
+}

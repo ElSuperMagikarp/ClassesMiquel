@@ -112,7 +112,7 @@ public static class ProductEndpoints
 
             ProductADO.Update(dbConn, productUpdt);
 
-            return Results.Ok(ProductResponse.FromProduct(product));
+            return Results.Ok(ProductResponse.FromProduct(productUpdt));
         });
 
         // DELETE Product

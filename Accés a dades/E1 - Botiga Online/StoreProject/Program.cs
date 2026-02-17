@@ -14,30 +14,30 @@ builder.Configuration
 
 // JSON Web Token
 
-builder.Services
-    .AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
-    .AddJwtBearer(options =>
-    {
-        options.TokenValidationParameters = new TokenValidationParameters
-        {
-            ValidateIssuerSigningKey = true,
-            IssuerSigningKey =
-                new SymmetricSecurityKey(
-                    Encoding.UTF8.GetBytes(builder.Configuration["Jwt:JwtSecretKey"]!)
-                ),
+// builder.Services
+//     .AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
+//     .AddJwtBearer(options =>
+//     {
+//         options.TokenValidationParameters = new TokenValidationParameters
+//         {
+//             ValidateIssuerSigningKey = true,
+//             IssuerSigningKey =
+//                 new SymmetricSecurityKey(
+//                     Encoding.UTF8.GetBytes(builder.Configuration["Jwt:JwtSecretKey"]!)
+//                 ),
 
-            ValidateIssuer = true,
-            ValidIssuer = "demo",
+//             ValidateIssuer = true,
+//             ValidIssuer = "demo",
 
-            ValidateAudience = true,
-            ValidAudience = "public",
+//             ValidateAudience = true,
+//             ValidAudience = "public",
 
-            ValidateLifetime = true,
-            ClockSkew = TimeSpan.FromSeconds(30)
-        };
-    });
+//             ValidateLifetime = true,
+//             ClockSkew = TimeSpan.FromSeconds(30)
+//         };
+//     });
 
-builder.Services.AddAuthorization();
+// builder.Services.AddAuthorization();
 
 string connectionString = builder.Configuration.GetConnectionString("DefaultConnection")!;
 DatabaseConnection dbConn = new DatabaseConnection(connectionString);
@@ -45,6 +45,7 @@ DatabaseConnection dbConn = new DatabaseConnection(connectionString);
 WebApplication webApp = builder.Build();
 
 // Registra els endpoints en un mètode separat
+webApp.MapUserEndpoints(dbConn);
 webApp.MapProductEndpoints(dbConn);
 webApp.MapProductFamilyEndpoints(dbConn);
 webApp.MapShoppingCartEndpoints(dbConn);
