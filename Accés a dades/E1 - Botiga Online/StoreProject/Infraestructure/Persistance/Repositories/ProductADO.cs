@@ -6,7 +6,6 @@ namespace StoreProject.Infraestructure.Persistance.Repository;
 
 static class ProductADO
 {
-
     public static void Insert(DatabaseConnection dbConn, Product product)
     {
         dbConn.Open();
