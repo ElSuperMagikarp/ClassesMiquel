@@ -1,7 +1,7 @@
 using StoreProject.Infraestructure.Common;
 using StoreProject.Infraestructure.DTO;
 
-namespace SpotifyAPI.Validators;
+namespace StoreProject.Validators;
 
 public static class UserValidator
 {

@@ -3,7 +3,7 @@ using StoreProject.Infraestructure.DTO;
 using StoreProject.Infraestructure.Services;
 using StoreProject.Infraestructure.Persistance.Repository;
 
-namespace SpotifyAPI.Validators;
+namespace StoreProject.Validators;
 
 public static class UserADOValidator
 {
