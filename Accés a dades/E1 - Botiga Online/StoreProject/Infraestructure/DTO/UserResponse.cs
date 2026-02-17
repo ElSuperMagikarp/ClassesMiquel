@@ -1,6 +1,6 @@
 using StoreProject.Infraestructure.Persistance.Entities;
 
-namespace SpotifyAPI.DTO;
+namespace StoreProject.Infraestructure.DTO;
 
 public record UserResponse(Guid Id, string Username, string Email)
 {
