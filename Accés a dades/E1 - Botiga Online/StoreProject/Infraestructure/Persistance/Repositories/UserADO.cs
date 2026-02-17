@@ -1,0 +1,152 @@
+using Microsoft.Data.SqlClient;
+using StoreProject.Infraestructure.Services;
+using StoreProject.Infraestructure.Persistance.Entities;
+
+namespace StoreProject.Infraestructure.Persistance.Repository;
+
+static class UserADO
+{
+    public static void Insert(DatabaseConnection dbConn, User user)
+    {
+
+        dbConn.Open();
+
+        string sql = @"INSERT INTO Users (Id, Username, Email, Password, Salt)
+                      VALUES (@Id, @Username, @Email, @Password, @Salt)";
+
+        using SqlCommand cmd = new SqlCommand(sql, dbConn.sqlConnection);
+        cmd.Parameters.AddWithValue("@Id", user.Id);
+        cmd.Parameters.AddWithValue("@Username", user.Username);
+        cmd.Parameters.AddWithValue("@Email", user.Email);
+        cmd.Parameters.AddWithValue("@Password", user.Password);
+        cmd.Parameters.AddWithValue("@Salt", user.Salt);
+
+        int rows = cmd.ExecuteNonQuery();
+        Console.WriteLine($"{rows} fila inserida.");
+
+        dbConn.Close();
+    }
+
+    public static List<User> GetAll(DatabaseConnection dbConn)
+    {
+        List<User> users = new();
+
+        dbConn.Open();
+        string sql = "SELECT Id, Username, Email FROM Users";
+
+        using SqlCommand cmd = new SqlCommand(sql, dbConn.sqlConnection);
+        using SqlDataReader reader = cmd.ExecuteReader();
+
+        while (reader.Read())
+        {
+            users.Add(new User
+            {
+                Id = reader.GetGuid(0),
+                Username = reader.GetString(1),
+                Email = reader.GetString(2)
+            });
+        }
+
+        dbConn.Close();
+        return users;
+    }
+
+    public static User? GetById(DatabaseConnection dbConn, Guid id)
+    {
+        dbConn.Open();
+        string sql = "SELECT Id, Username, Email FROM Users WHERE Id = @Id";
+
+        using SqlCommand cmd = new SqlCommand(sql, dbConn.sqlConnection);
+        cmd.Parameters.AddWithValue("@Id", id);
+
+        using SqlDataReader reader = cmd.ExecuteReader();
+        User? user = null;
+
+        if (reader.Read())
+        {
+            user = new User
+            {
+                Id = reader.GetGuid(0),
+                Username = reader.GetString(1),
+                Email = reader.GetString(2)
+            };
+        }
+
+        dbConn.Close();
+        return user;
+    }
+
+    public static void Update(DatabaseConnection dbConn, User user)
+    {
+
+        dbConn.Open();
+
+        string sql = @"UPDATE Users
+                    SET Username = @Username,
+                        Email = @Email,
+                        Password = @Password,
+                        Salt = @Salt
+                    WHERE Id = @Id";
+
+        using SqlCommand cmd = new SqlCommand(sql, dbConn.sqlConnection);
+        cmd.Parameters.AddWithValue("@Id", user.Id);
+        cmd.Parameters.AddWithValue("@Username", user.Username);
+        cmd.Parameters.AddWithValue("@Email", user.Email);
+        cmd.Parameters.AddWithValue("@Password", user.Password);
+        cmd.Parameters.AddWithValue("@Salt", user.Salt);
+
+
+        int rows = cmd.ExecuteNonQuery();
+
+        Console.WriteLine($"{rows} fila actualitzada.");
+
+        dbConn.Close();
+    }
+
+    public static bool Delete(DatabaseConnection dbConn, Guid id)
+    {
+        dbConn.Open();
+
+        string sql = @"DELETE FROM Users WHERE Id = @Id";
+
+        using SqlCommand cmd = new SqlCommand(sql, dbConn.sqlConnection);
+        cmd.Parameters.AddWithValue("@Id", id);
+
+        int rows = cmd.ExecuteNonQuery();
+
+        dbConn.Close();
+
+        return rows > 0;
+    }
+
+
+    public static bool UsernameExists(DatabaseConnection dbConn, string username)
+    {
+        dbConn.Open();
+        string sql = "SELECT COUNT(*) FROM Users WHERE Username = @Username";
+
+        using SqlCommand cmd = new SqlCommand(sql, dbConn.sqlConnection);
+        cmd.Parameters.AddWithValue("@Username", username);
+
+        int count = (int)cmd.ExecuteScalar();
+
+        dbConn.Close();
+
+        return count > 0;
+    }
+
+    public static bool EmailExists(DatabaseConnection dbConn, string email)
+    {
+        dbConn.Open();
+        string sql = "SELECT COUNT(*) FROM Users WHERE Email = @Email";
+
+        using SqlCommand cmd = new SqlCommand(sql, dbConn.sqlConnection);
+        cmd.Parameters.AddWithValue("@Email", email);
+
+        int count = (int)cmd.ExecuteScalar();
+
+        dbConn.Close();
+
+        return count > 0;
+    }
+}
