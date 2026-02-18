@@ -4,6 +4,7 @@ using StoreProject.Infraestructure.Persistance.Entities;
 using StoreProject.Helpers;
 using StoreProject.Infraestructure.Classes.Interfaces;
 using StoreProject.Infraestructure.Classes.Factories;
+using StoreProject.Infraestructure.DTO;
 
 namespace StoreProject.Application.EndPoints;
 
@@ -47,6 +48,11 @@ public static class ShoppingCartEndpoints
             decimal import = baseImport * (1 - discount);
 
             return Results.Ok(new { import });
+        });
+
+        app.MapPost("shoppingCarts/purchase", (PurchaseRequest req) =>
+        {
+            return Results.Ok(req);
         });
     }
 }
