@@ -5,6 +5,7 @@ using StoreProject.Helpers;
 using StoreProject.Infraestructure.Classes.Interfaces;
 using StoreProject.Infraestructure.Classes.Factories;
 using StoreProject.Infraestructure.DTO;
+using StoreProject.Domain.Entities;
 
 namespace StoreProject.Application.EndPoints;
 
@@ -52,7 +53,8 @@ public static class ShoppingCartEndpoints
 
         app.MapPost("shoppingCarts/purchase", (PurchaseRequest req) =>
         {
-            return Results.Ok(req);
+            Purchase purchase = req.ToPurchase();
+            return Results.Ok(purchase);
         });
     }
 }
