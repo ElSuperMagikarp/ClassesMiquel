@@ -49,3 +49,8 @@
   ]
 }
 ```
+
+### DUBTES
+- [ ] Com faig CompraRequest, perque tots els requests que tenim fan ToAlgo i no tinc objecte per fer-ho
+- [ ] De la mateixa manera, com Línea Producte, pk en teoria es un request pero no ho entenc
+- [ ] Si la taula de carro te data, he de fer CarroRequest?
