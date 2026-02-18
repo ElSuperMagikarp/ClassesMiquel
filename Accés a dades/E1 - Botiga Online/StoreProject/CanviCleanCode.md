@@ -12,39 +12,45 @@
   - [X] ValidadorsADO -> Infraestructure/Validators
 
 ## Coses noves
-- [ ] Compra Request _(Infraestructure/DTO)_
-  - [ ] Usuari (Guid)
-  - [ ] Data (Date)
-  - [ ] Array Línea Producte
-- [ ] Línea Producte (Request) _(Infraestructure/DTO)_
-  - [ ] Producte (Guid)
-  - [ ] Quantitat (int)
-- [ ] Endpoint Compra
-  - [ ] Usuari
-  - [ ] Llista Productes (Codi, Quantitat)
-  - [ ] Data de compra
-- [ ] Taula Nova Preus-Producte
-  - [ ] Id
-  - [ ] IdProducte
-  - [ ] Preu
-  - [ ] Data
-- [ ] Taula Carro (Servirá de compra)
-  - [X] Id (ja la té)
-  - [ ] Data
+- Domain _(Domain/Entities)_
+  - [X] Purchase
+    - UserId (`Guid`)
+    - PurchaseDate (`DateOnly`)
+    - ProductLine List (`List<ProductLine>`)
+  - [X] ProductLine
+    - Producte (`Guid`)
+    - Quantitat (`int`)
+- Request _(Infraestructure/DTO)_
+  - [ ] CompraRequest
+  - [ ] Linea
+- Endpoint
+  - [ ] Compra
+    - Usuari
+    - Llista Productes (Codi, Quantitat)
+    - Data de compra
+- BD
+  - [ ] Taula Nova Preus-Producte
+    - Id
+    - IdProducte
+    - Preu
+    - Data
+  - [ ] Taula Carro (Servirá de compra)
+    - Id (ja la té)
+    - Data
 
 **Exemple JSON Compra**
 ``` json
 {
-  "usuari": "guidClient",
-  "data": "data",
-  "productes": [
+  "userId": "guidClient",
+  "purchaseDate": "data",
+  "productLines": [
       {
-        "id": "guidProducte",
-        "quantitat": 3
+        "productId": "guidProducte",
+        "quantity": 3
       },
       {
-        "id": "guidProducte",
-        "quantitat": 1
+        "productId": "guidProducte",
+        "quantity": 1
       }
   ]
 }
@@ -53,4 +59,5 @@
 ### DUBTES
 - [ ] Com faig CompraRequest, perque tots els requests que tenim fan ToAlgo i no tinc objecte per fer-ho
 - [ ] De la mateixa manera, com Línea Producte, pk en teoria es un request pero no ho entenc
+- [ ] Com li trec el preu a producte? Introdueixo productes sense preu i faig un crud apart?
 - [ ] Si la taula de carro te data, he de fer CarroRequest?
