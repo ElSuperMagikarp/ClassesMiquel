@@ -12,28 +12,40 @@
   - [X] ValidadorsADO -> Infraestructure/Validators
 
 ## Coses noves
+- [ ] Compra Request _(Infraestructure/DTO)_
+  - [ ] Usuari (Guid)
+  - [ ] Data (Date)
+  - [ ] Array Línea Producte
+- [ ] Línea Producte (Request) _(Infraestructure/DTO)_
+  - [ ] Producte (Guid)
+  - [ ] Quantitat (int)
 - [ ] Endpoint Compra
+  - [ ] Usuari
   - [ ] Llista Productes (Codi, Quantitat)
-  - [ ] Client
-- [ ] Taula BD Compra (potser carro)
+  - [ ] Data de compra
+- [ ] Taula Nova Preus-Producte
+  - [ ] Id
+  - [ ] IdProducte
+  - [ ] Preu
+  - [ ] Data
+- [ ] Taula Carro (Servirá de compra)
+  - [X] Id (ja la té)
+  - [ ] Data
 
 **Exemple JSON Compra**
 ``` json
 {
-    "client": "guidClient",
-    "productes": [
-        {
-            "id": "guidProducte",
-            "quantitat": 3
-        },
-        {
-            "id": "guidProducte",
-            "quantitat": 1
-        }
-    ]
+  "usuari": "guidClient",
+  "data": "data",
+  "productes": [
+      {
+        "id": "guidProducte",
+        "quantitat": 3
+      },
+      {
+        "id": "guidProducte",
+        "quantitat": 1
+      }
+  ]
 }
 ```
-
-## Dubtes generals
-- Que és Infraestructure/Persistance?
-  - Persistance == BD/Emmagatzematge
