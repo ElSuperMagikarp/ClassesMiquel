@@ -21,8 +21,14 @@
     - Producte (`Guid`)
     - Quantitat (`int`)
 - Request _(Infraestructure/DTO)_
-  - [ ] CompraRequest
-  - [ ] Linea
+  - [X] PurchaseRequest
+  - [X] ProductLineRequest
+- Validators _(Domain/Validators)_
+  - [X] Purchase Validator
+  - [ ] Product Line Validator
+- Mappers _(Infraestructure/Mappers)_
+  - [ ] PurchaseMapper
+  - [ ] ProductLineMapper
 - Endpoint
   - [ ] Compra
     - Usuari

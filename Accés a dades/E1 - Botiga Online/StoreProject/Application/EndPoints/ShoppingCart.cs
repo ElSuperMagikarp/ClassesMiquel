@@ -6,6 +6,8 @@ using StoreProject.Infraestructure.Classes.Interfaces;
 using StoreProject.Infraestructure.Classes.Factories;
 using StoreProject.Infraestructure.DTO;
 using StoreProject.Domain.Entities;
+using StoreProject.Infraestructure.Common;
+using StoreProject.Validators;
 
 namespace StoreProject.Application.EndPoints;
 
@@ -54,6 +56,16 @@ public static class ShoppingCartEndpoints
         app.MapPost("shoppingCarts/purchase", (PurchaseRequest req) =>
         {
             Purchase purchase = req.ToPurchase();
+            Result result = PurchaseValidator.Validate(req);
+            if (!result.IsOk)
+            {
+                return Results.BadRequest(new
+                {
+                    error = result.ErrorCode,
+                    message = result.ErrorMessage
+                });
+            }
+
             return Results.Ok(purchase);
         });
     }
