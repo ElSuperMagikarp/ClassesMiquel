@@ -16,13 +16,11 @@ public static class ShoppingCartEndpoints
     public static void MapShoppingCartEndpoints(this WebApplication app, DatabaseConnection dbConn)
     {
         // POST /shoppingCart
-        app.MapPost("/shoppingCarts", () =>
+        app.MapPost("/shoppingCarts", (ShoppingCartRequest req) =>
         {
-            ShoppingCart shoppingCart = new ShoppingCart
-            {
-                Id = Guid.NewGuid()
-            };
+            Guid id = Guid.NewGuid();
 
+            ShoppingCart shoppingCart = req.ToShoppingCart(id);
             ShoppingCartADO.Insert(dbConn, shoppingCart);
 
             return Results.Created($"/shoppingCarts/{shoppingCart.Id}", shoppingCart);

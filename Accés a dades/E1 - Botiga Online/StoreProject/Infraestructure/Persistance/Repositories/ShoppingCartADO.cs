@@ -11,20 +11,22 @@ static class ShoppingCartADO
     {
         dbConn.Open();
 
-        string sql = @"INSERT INTO ShoppingCarts (Id)
-                        VALUES (@Id)";
+        string sql = @"INSERT INTO ShoppingCarts (Id, UserId, ShoppingDate)
+                        VALUES (@Id, @UserId, @ShoppingDate)";
 
         using SqlCommand cmd = new SqlCommand(sql, dbConn.sqlConnection);
         cmd.Parameters.AddWithValue("@Id", shoppingCart.Id);
+        cmd.Parameters.AddWithValue("@UserId", shoppingCart.UserId);
+        cmd.Parameters.AddWithValue("@ShoppingDate", shoppingCart.Date);
 
         int rows = cmd.ExecuteNonQuery();
         Console.WriteLine($"{rows} fila inserida.");
         dbConn.Close();
     }
 
-    public static List<Infraestructure.Classes.ShoppingCartProduct> GetShoppingCartProducts(DatabaseConnection dbConn, Guid shoppingCartId)
+    public static List<Classes.ShoppingCartProduct> GetShoppingCartProducts(DatabaseConnection dbConn, Guid shoppingCartId)
     {
-        List<Infraestructure.Classes.ShoppingCartProduct> shoppingCartProducts = new();
+        List<Classes.ShoppingCartProduct> shoppingCartProducts = new();
 
         dbConn.Open();
         string sql = @"SELECT scp.Id, scp.ShoppingCartId, scp.ProductId, Quantity, p.Price, p.Discount
@@ -39,7 +41,7 @@ static class ShoppingCartADO
 
         while (reader.Read())
         {
-            shoppingCartProducts.Add(new Infraestructure.Classes.ShoppingCartProduct
+            shoppingCartProducts.Add(new Classes.ShoppingCartProduct
             {
                 Id = reader.GetGuid(0),
                 ShoppingCartId = reader.GetGuid(1),
