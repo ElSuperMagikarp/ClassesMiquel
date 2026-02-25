@@ -10,15 +10,14 @@ static class ProductADO
     {
         dbConn.Open();
 
-        string sql = @"INSERT INTO Products (Id, FamilyId, Code, Name, Price, Discount)
-                        VALUES (@Id, @FamilyId, @Code, @Name, @Price, @Discount)";
+        string sql = @"INSERT INTO Products (Id, FamilyId, Code, Name, Discount)
+                        VALUES (@Id, @FamilyId, @Code, @Name, @Discount)";
 
         using SqlCommand cmd = new SqlCommand(sql, dbConn.sqlConnection);
         cmd.Parameters.AddWithValue("@Id", product.Id);
         cmd.Parameters.AddWithValue("@FamilyId", product.FamilyId);
         cmd.Parameters.AddWithValue("@Code", product.Code);
         cmd.Parameters.AddWithValue("@Name", product.Name);
-        cmd.Parameters.AddWithValue("@Price", product.Price);
         cmd.Parameters.AddWithValue("@Discount", product.Discount);
 
         int rows = cmd.ExecuteNonQuery();
@@ -31,7 +30,7 @@ static class ProductADO
         List<Product> products = new();
 
         dbConn.Open();
-        string sql = "SELECT Id, FamilyId, Code, Name, Price, Discount FROM Products";
+        string sql = "SELECT Id, FamilyId, Code, Name, Discount FROM Products";
 
         using SqlCommand cmd = new SqlCommand(sql, dbConn.sqlConnection);
         using SqlDataReader reader = cmd.ExecuteReader();
@@ -44,8 +43,7 @@ static class ProductADO
                 FamilyId = reader.GetGuid(1),
                 Code = reader.GetString(2),
                 Name = reader.GetString(3),
-                Price = reader.GetDecimal(4),
-                Discount = reader.GetDecimal(5)
+                Discount = reader.GetDecimal(4)
             });
         }
 
@@ -56,7 +54,7 @@ static class ProductADO
     public static Product? GetById(DatabaseConnection dbConn, Guid id)
     {
         dbConn.Open();
-        string sql = "SELECT Id, FamilyId, Code, Name, Price, Discount FROM Products WHERE Id = @Id";
+        string sql = "SELECT Id, FamilyId, Code, Name, Discount FROM Products WHERE Id = @Id";
 
         using SqlCommand cmd = new SqlCommand(sql, dbConn.sqlConnection);
         cmd.Parameters.AddWithValue("@Id", id);
@@ -72,8 +70,7 @@ static class ProductADO
                 FamilyId = reader.GetGuid(1),
                 Code = reader.GetString(2),
                 Name = reader.GetString(3),
-                Price = reader.GetDecimal(4),
-                Discount = reader.GetDecimal(5)
+                Discount = reader.GetDecimal(4)
             };
         }
 
@@ -89,7 +86,6 @@ static class ProductADO
                     SET FamilyId = @FamilyId,
                         Code = @Code,
                         Name = @Name,
-                        Price = @Price,
                         Discount = @Discount
                     WHERE Id = @Id";
 
@@ -98,7 +94,6 @@ static class ProductADO
         cmd.Parameters.AddWithValue("@FamilyId", product.FamilyId);
         cmd.Parameters.AddWithValue("@Code", product.Code);
         cmd.Parameters.AddWithValue("@Name", product.Name);
-        cmd.Parameters.AddWithValue("@Price", product.Price);
         cmd.Parameters.AddWithValue("@Discount", product.Discount);
 
         int rows = cmd.ExecuteNonQuery();

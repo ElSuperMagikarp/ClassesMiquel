@@ -34,15 +34,7 @@ public static class ProductEndpoints
                 });
             }
 
-            Product product = new Product
-            {
-                Id = Guid.NewGuid(),
-                FamilyId = req.FamilyId,
-                Code = req.Code,
-                Name = req.Name,
-                Price = req.Price,
-                Discount = req.Discount
-            };
+            Product product = req.ToProduct(Guid.NewGuid());
 
             ProductADO.Insert(dbConn, product);
 
@@ -100,15 +92,7 @@ public static class ProductEndpoints
                 });
             }
 
-            Product productUpdt = new Product
-            {
-                Id = id,
-                FamilyId = req.FamilyId,
-                Code = req.Code,
-                Name = req.Name,
-                Price = req.Price,
-                Discount = req.Discount
-            };
+            Product productUpdt = req.ToProduct(id);
 
             ProductADO.Update(dbConn, productUpdt);
 

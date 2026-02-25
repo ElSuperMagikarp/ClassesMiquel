@@ -17,11 +17,6 @@ public static class ProductValidator
             return Result.Failure("El nom del producte és obligatori", "DADA_OBLIGATORIA");
         }
 
-        if (product.Price <= 0)
-        {
-            return Result.Failure("El preu ha de ser superior a 0", "PREU_INCORRECTE");
-        }
-
         if (product.Discount < 0)
         {
             return Result.Failure("El descompte ha de ser com a mínim 0", "DESCOMPTE_INCORRECTE");

@@ -2,7 +2,7 @@ using StoreProject.Infraestructure.Persistance.Entities;
 
 namespace StoreProject.Infraestructure.DTO;
 
-public record ProductRequest(Guid FamilyId, string Code, string Name, decimal Price, decimal Discount)
+public record ProductRequest(Guid FamilyId, string Code, string Name, decimal Discount)
 {
     public Product ToProduct(Guid id)
     {
@@ -12,7 +12,6 @@ public record ProductRequest(Guid FamilyId, string Code, string Name, decimal Pr
             FamilyId = FamilyId,
             Code = Code,
             Name = Name,
-            Price = Price,
             Discount = Discount
         };
     }

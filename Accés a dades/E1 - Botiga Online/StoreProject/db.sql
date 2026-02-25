@@ -20,10 +20,18 @@ CREATE TABLE Products (
     FamilyId UNIQUEIDENTIFIER NOT NULL,
     Code NVARCHAR(50) NOT NULL ,    -- UNIQUE
     Name NVARCHAR(100) NOT NULL,
-    Price DECIMAL(10, 2) NOT NULL,
     Discount DECIMAL(5, 2) NOT NULL,
     CONSTRAINT FKProductsFamily FOREIGN KEY (FamilyId)
         REFERENCES ProductFamilies(Id)
+);
+
+CREATE TABLE Prices (
+    Id UNIQUEIDENTIFIER NOT NULL PRIMARY KEY,
+    ProductId UNIQUEIDENTIFIER NOT NULL,
+    Price DECIMAL(9, 2) NOT NULL,
+    PriceDate DATE NOT NULL,
+    CONSTRAINT FKProducts FOREIGN KEY (ProductId)
+        REFERENCES Products(Id)
 );
 
 CREATE TABLE ShoppingCarts (
@@ -39,6 +47,7 @@ CREATE TABLE ShoppingCartsProducts (
     ShoppingCartId UNIQUEIDENTIFIER NOT NULL,
     ProductId UNIQUEIDENTIFIER NOT NULL,
     Quantity INT NOT NULL, 
+    Price DECIMAL(9,2) NOT NULL,
     CONSTRAINT FKShoppingCartsProductsShoppingCarts FOREIGN KEY (ShoppingCartId)
         REFERENCES ShoppingCarts(Id),
     CONSTRAINT FKShoppingCartsProductsProducts FOREIGN KEY (ProductId)
